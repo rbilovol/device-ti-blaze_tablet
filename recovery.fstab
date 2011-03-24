@@ -1,0 +1,8 @@
+# mount point	fstype		device
+
+/sdcard         vfat            /dev/block/platform/mmci-omap-hs.1/by-name/media
+/system		ext4		/dev/block/platform/mmci-omap-hs.1/by-name/system
+/cache		ext4		/dev/block/platform/mmci-omap-hs.1/by-name/cache
+/data		ext4		/dev/block/platform/mmci-omap-hs.1/by-name/userdata
+/boot		mtd		/dev/block/platform/mmci-omap-hs.1/by-name/boot
+/bootloader	mtd		/dev/block/platform/mmci-omap-hs.1/by-name/bootloader
