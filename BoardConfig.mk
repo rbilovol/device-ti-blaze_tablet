@@ -54,7 +54,7 @@ endif
 ifeq ($TARGET_NO_KERNEL),false)
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 mem=456M@0x80000000 mem=512M@0xA0000000 init=/init vram=10M omapfb.vram=0:4M
+BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 mem=456M@0x80000000 mem=512M@0xA0000000 init=/init vram=20M omapfb.vram=0:8M androidboot.hardware=omap4430 androidboot.console=ttyO2
 endif
 
 # Recovery
