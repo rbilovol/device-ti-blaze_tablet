@@ -1,4 +1,6 @@
 on init
+    export EXTERNAL_STORAGE /mnt/sdcard
+
     # mount debugfs
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
@@ -10,6 +12,10 @@ on init
     write /sys/kernel/debug/pm_debug/smartreflex/sr_core/autocomp 1
     write /sys/kernel/debug/pm_debug/smartreflex/sr_iva/autocomp 1
     write /sys/kernel/debug/pm_debug/smartreflex/sr_mpu/autocomp 1
+
+# create sdcard mountpoint
+    mkdir /mnt/sdcard 0000 system system
+    symlink /mnt/sdcard /sdcard
 
 on boot
 
