@@ -54,3 +54,6 @@ fi
 
 #flash cache.img
 $FASTBOOT flash cache 		./cache.img
+
+echo "Flashing done... auto-rebooting"
+$FASTBOOT reboot
