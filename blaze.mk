@@ -220,9 +220,6 @@ PRODUCT_PACKAGES += \
 #        frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 #        frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
 
-# Pick up hdpi resources where available
-PRODUCT_LOCALES += hdpi
-
 # Pick up audio package
 # no longer needed?
 include frameworks/base/data/sounds/AudioPackage2.mk
