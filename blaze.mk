@@ -36,6 +36,10 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES := \
 #        omap-keypad.kcm 
 
+# Prebuilt idc files
+PRODUCT_COPY_FILES += \
+        device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
         make_ext4fs \
