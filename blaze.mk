@@ -27,10 +27,9 @@ PRODUCT_COPY_FILES += \
         device/ti/blaze_tablet/init.omap4430.rc:root/init.omap4430.rc \
         device/ti/blaze_tablet/ueventd.omap4430.rc:root/ueventd.omap4430.rc
 
-#KD# probably not needed on the tablet - remove?
 # Prebuilt kl keymaps
-#PRODUCT_COPY_FILES += \
-#        device/ti/blaze_tablet/omap-keypad.kl:system/usr/keylayout/omap-keypad.kl 
+PRODUCT_COPY_FILES += \
+        device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 # Generated kcm keymaps
 #PRODUCT_PACKAGES := \
