@@ -72,17 +72,17 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 
 
 # Connectivity - Wi-Fi
-#USES_TI_WL1283 := true
-#BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
-#ifdef USES_TI_WL1283
-#BOARD_WLAN_DEVICE           := wl1283
+USES_TI_WL1283 := true
+BOARD_WPA_SUPPLICANT_DRIVER := CUSTOM
+ifdef USES_TI_WL1283
+BOARD_WLAN_DEVICE           := wl1283
 #BOARD_SOFTAP_DEVICE         := wl1283
-#endif
-#WPA_SUPPLICANT_VERSION      := VER_0_6_X
-#HOSTAPD_VERSION             := VER_0_6_X
-#WIFI_DRIVER_MODULE_PATH     := "/system/etc/wifi/tiwlan_drv.ko"
-#WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
-#WIFI_FIRMWARE_LOADER        := "wlan_loader"
+endif
+WPA_SUPPLICANT_VERSION      := VER_0_6_X
+HOSTAPD_VERSION             := VER_0_6_X
+WIFI_DRIVER_MODULE_PATH     := "/system/etc/wifi/tiwlan_drv.ko"
+WIFI_DRIVER_MODULE_NAME     := "tiwlan_drv"
+WIFI_FIRMWARE_LOADER        := "wlan_loader"
 
 # Sensors
 #BOARD_HAVE_SENSORS := true
