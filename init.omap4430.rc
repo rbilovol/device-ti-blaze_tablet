@@ -6,7 +6,7 @@ on init
 
 # power management
 # Enable off mode by default
-    write /sys/kernel/debug/pm_debug/enable_off_mode 1
+#    write /sys/kernel/debug/pm_debug/enable_off_mode 1
 
 # Enable Smart Reflex in debugfs
     write /sys/kernel/debug/pm_debug/smartreflex/sr_core/autocomp 1
