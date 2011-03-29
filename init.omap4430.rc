@@ -98,6 +98,9 @@ on fs
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c/enable
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c/delay
+    chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040
+    chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/enable
+    chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/delay
     chown system system /sys/devices/platform/sfh7741.1
     chown system system /sys/devices/platform/sfh7741.1/state
     chown system system /sys/bus/i2c/drivers/bmp085/4-0077
