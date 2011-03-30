@@ -29,7 +29,8 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
-        device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
+        device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+        device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl
 
 # Generated kcm keymaps
 #PRODUCT_PACKAGES := \
