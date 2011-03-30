@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+key 158   BACK            WAKE
+key 114   VOLUME_DOWN     WAKE
+key 115   VOLUME_UP       WAKE
 key 102   HOME       WAKE
-key 158   BACK       WAKE
 key 59    MENU       WAKE
