@@ -226,7 +226,7 @@ service pvrsrvinit /system/bin/pvrsrvinit
 
 #Load IVA firmware
 service baseimage /system/bin/syslink_daemon.out /data/base_image_sys_m3.xem3 /data/base_image_app_m3.xem3
-    critical
+    class core
     user root
     group video
     oneshot
