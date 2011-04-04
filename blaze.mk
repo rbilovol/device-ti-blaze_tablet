@@ -131,13 +131,9 @@ PRODUCT_PACKAGES += \
     overlay.omap4 \
     overlay_test
 
-#KD# no alsa right now - disabled
-# Alsa configuration
-#PRODUCT_COPY_FILES += \
-#        device/ti/blaze_tablet/asound.conf:system/etc/asound.conf 
 # Audio HAL
-#PRODUCT_PACKAGES += \
-#    alsa.omap4
+PRODUCT_PACKAGES += \
+    alsa.omap4
 
 # Kernel
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -225,7 +221,6 @@ PRODUCT_PACKAGES += \
 #        frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
 
 # Pick up audio package
-# no longer needed?
 include frameworks/base/data/sounds/AudioPackage2.mk
 
 # this make file is to extend FRAMEWORKS_BASE_SUBDIRS from pathmake.mk

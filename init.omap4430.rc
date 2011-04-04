@@ -74,17 +74,18 @@ on fs
     chmod 444 /dev/omap-devh1
     chmod 444 /dev/omap-devh2
     # change permissions for alsa nodes
-    chmod 0777  /dev/snd/pcmC0D0c
-    chmod 0777 /dev/snd/pcmC0D0p
-    chmod 0777  /dev/snd/controlC0
-    chmod 0777  /dev/snd/timer
+    chown audio audio /dev/snd/pcmC0D0c
+    chown audio audio /dev/snd/pcmC0D0p
+    chown audio audio /dev/snd/pcmC0D6p
+    chown audio audio /dev/snd/controlC0
+    chown audio audio /dev/snd/timer
 
     #change permissions for alsa nodes for audio modem
-    chmod 0777 /dev/snd/pcmC0D5c
-    chmod 0777 /dev/snd/pcmC0D5p
+    chown audio audio /dev/snd/pcmC0D5c
+    chown audio audio /dev/snd/pcmC0D5p
 
     #change permissions for alsa nodes for HDMI
-    chmod 777  /dev/snd/pcmC0D7p
+    chown audio audio /dev/snd/pcmC0D7p
 
     # change permissions for modem
     chmod 0660 /dev/ttyS0
