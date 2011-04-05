@@ -15,6 +15,6 @@ ro.opengles.version=131072
 ro.radio.use-ppp no
 ro.config.nocheckin yes
 #define defaults for audio D/A mic and power mode
-omap.audio.mic.main=AMic0
-omap.audio.mic.sub=AMic1
+omap.audio.mic.main=DMic0L
+omap.audio.mic.sub=DMic0R
 omap.audio.power=PingPong
