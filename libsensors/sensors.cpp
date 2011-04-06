@@ -36,6 +36,7 @@
 #include "ProximitySensor.h"
 #include "BMP085Sensor.h"
 #include "HMC5843Sensor.h"
+#include "MPU3050Sensor.h"
 
 
 /*****************************************************************************/
@@ -88,6 +89,10 @@ static const struct sensor_t sSensorList[] = {
           "HoneyWell",
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
           SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, 2000.0f, 1.0f, 6.7f, { } },
+        { "MPU3050 3-Axis Gyroscope",
+          "Bosch",
+          1, SENSORS_GYROSCOPE_HANDLE,
+          SENSOR_TYPE_GYROSCOPE, RANGE_GYRO, CONVERT_GYRO, 6.1f, 1200, { } },
 };
 
 
@@ -134,6 +139,7 @@ private:
         proximity       = 1,
 	press_temp	= 2,
 	magno		= 3,
+	gyro		= 4,
         numSensorDrivers,
         numFds,
 
@@ -160,6 +166,8 @@ private:
             case ID_PRESS:
             case ID_TEMP:
                 return press_temp;
+            case ID_GY:
+                return gyro;
         }
         return -EINVAL;
     }
@@ -188,6 +196,11 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[magno].fd = mSensors[magno]->getFd();
     mPollFds[magno].events = POLLIN;
     mPollFds[magno].revents = 0;
+
+    mSensors[gyro] = new MPU3050Sensor();
+    mPollFds[gyro].fd = mSensors[gyro]->getFd();
+    mPollFds[gyro].events = POLLIN;
+    mPollFds[gyro].revents = 0;
 
     int wakeFds[2];
     int result = pipe(wakeFds);
