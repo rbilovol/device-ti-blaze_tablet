@@ -226,6 +226,7 @@ service baseimage /system/bin/syslink_daemon.out /data/base_image_sys_m3.xem3 /d
     oneshot
 
 service uim /system/bin/uim-sysfs
+    class core
     user root
     group media bluetooth
     oneshot
@@ -236,6 +237,34 @@ service hciattach /system/bin/hciattach -l
 # service hciattach_legacy is used instead of hciattach because, we dont
 # have nodes named ttyHS0
     group bluetooth net_bt_admin misc
+    disabled
+    oneshot
+
+service hfag /system/bin/sdptool add --channel=10 HFAG
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service hsag /system/bin/sdptool add --channel=11 HSAG
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service opush /system/bin/sdptool add --channel=12 OPUSH
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service pbap /system/bin/sdptool add --channel=19 PBAP
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
     disabled
     oneshot
 
