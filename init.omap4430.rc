@@ -102,6 +102,9 @@ on fs
     chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040
     chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/enable
     chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/delay
+    chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068
+    chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068/enable
+    chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068/delay
     chown system system /sys/devices/platform/sfh7741.1
     chown system system /sys/devices/platform/sfh7741.1/state
     chown system system /sys/bus/i2c/drivers/bmp085/4-0077
