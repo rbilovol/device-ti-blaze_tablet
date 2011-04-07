@@ -125,14 +125,8 @@ static int
 set_light_keyboard(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int err = 0;
-    int on = is_lit(state);
-
-    pthread_mutex_lock(&g_lock);
-    err = write_int(KEYBOARD_FILE, on ? 255:0);
-    pthread_mutex_unlock(&g_lock);
-
-    return err;
+    /* There is not keyboard on the Blaze Tablet */
+    return 0;
 }
 
 static int
@@ -143,7 +137,9 @@ set_light_buttons(struct light_device_t* dev,
     int on = is_lit(state);
 
     pthread_mutex_lock(&g_lock);
-    err = write_int(KEYBOARD_FILE, on ? 255:0);
+    err = write_int(RED_LED_FILE, on ? 255:0);
+    err = write_int(GREEN_LED_FILE, on ? 255:0);
+    err = write_int(BLUE_LED_FILE, on ? 255:0);
     pthread_mutex_unlock(&g_lock);
 
     return err;
@@ -154,145 +150,25 @@ static int
 set_light_battery(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int err = 0;
-    int red, green, blue;
-    unsigned int colorRGB;
-    int onMS, offMS;
-
-    switch (state->flashMode) {
-        case LIGHT_FLASH_HARDWARE:
-        case LIGHT_FLASH_TIMED:
-            onMS = state->flashOnMS;
-            offMS = state->flashOffMS;
-            break;
-        case LIGHT_FLASH_NONE:
-        default:
-            onMS = 0;
-            offMS = 0;
-            break;
-    }
-
-    colorRGB = state->color;
-#if 0
-    LOGD("set_light_battery colorRGB=%08X, onMS=%d, offMS=%d****************\n",
-            colorRGB, onMS, offMS);
-#endif
-    err = write_int(CHARGING_LED_FILE, colorRGB ? 255 : 0);
-
-    return err;
+    /* There is not battery LED on the Blaze Tablet */
+    return 0;
 }
 
 static int
 set_light_notification(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int err = 0;
-    int red, green, blue;
-    unsigned int colorRGB;
-    int onMS, offMS;
-
-    switch (state->flashMode) {
-       case LIGHT_FLASH_HARDWARE:
-       case LIGHT_FLASH_TIMED:
-            onMS = state->flashOnMS;
-            offMS = state->flashOffMS;
-            break;
-        case LIGHT_FLASH_NONE:
-        default:
-            onMS = 0;
-            offMS = 0;
-            break;
-    }
-
-    colorRGB = state->color;
-#if 0
-    LOGD("set_light_notification colorRGB=%08X, onMS=%d, offMS=%d\n",
-            colorRGB, onMS, offMS);
-#endif
-
-    /*TO DO: Need to manage the inputs to a single RGB LED ie don't turn off
-      the led or stop blinking if the attention LED should be lit */
-    red = (colorRGB >> 16) & 0xFF;
-    green = (colorRGB >> 8) & 0xFF;
-    blue = colorRGB & 0xFF;
-
-    err = write_int(RED_LED_FILE, red);
-    err = write_int(GREEN_LED_FILE, green);
-    err = write_int(BLUE_LED_FILE, blue);
-
-    if (onMS > 0 && offMS > 0) {
-        write_int(RED_DELAY_ON_FILE, onMS);
-        write_int(RED_DELAY_OFF_FILE, offMS);
-        write_int(GREEN_DELAY_ON_FILE, onMS);
-        write_int(GREEN_DELAY_OFF_FILE, offMS);
-        write_int(BLUE_DELAY_ON_FILE, onMS);
-        write_int(BLUE_DELAY_OFF_FILE, offMS);
-    } else {
-        write_int(RED_DELAY_ON_FILE, 0);
-        write_int(RED_DELAY_OFF_FILE, 0);
-        write_int(GREEN_DELAY_ON_FILE, 0);
-        write_int(GREEN_DELAY_OFF_FILE, 0);
-        write_int(BLUE_DELAY_ON_FILE, 0);
-        write_int(BLUE_DELAY_OFF_FILE, 0);
-    }
-    return err;
+    /* There is no dedicated notification LED on the Blaze Tablet */
+    return 0;
 }
 
 static int
 set_light_attention(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    int err = 0;
-    int red, green, blue;
-    unsigned int colorRGB;
-    int onMS, offMS;
+      /* There is no dedicated attention LED on the Blaze Tablet */
+    return 0;
 
-    switch (state->flashMode) {
-        case LIGHT_FLASH_HARDWARE:
-        case LIGHT_FLASH_TIMED:
-            onMS = state->flashOnMS;
-            offMS = state->flashOffMS;
-            break;
-        case LIGHT_FLASH_NONE:
-        default:
-            onMS = 0;
-            offMS = 0;
-            break;
-    }
-
-    colorRGB = state->color;
-#if 0
-    LOGD("set_light_attention colorRGB=%08X, onMS=%d, offMS=%d\n",
-            colorRGB, onMS, offMS);
-#endif
-
-    red = (colorRGB >> 16) & 0xFF;
-    green = (colorRGB >> 8) & 0xFF;
-    blue = colorRGB & 0xFF;
-
-    /*TO DO: Need to manage the inputs to a single RGB LED ie don't turn off
-      the led or stop blinking if the notification LED should be lit */
-    err = write_int(RED_LED_FILE, red);
-    err = write_int(GREEN_LED_FILE, green);
-    err = write_int(BLUE_LED_FILE, blue);
-
-    if (onMS > 0 && offMS > 0) {
-        write_int(RED_DELAY_ON_FILE, onMS);
-        write_int(RED_DELAY_OFF_FILE, offMS);
-        write_int(GREEN_DELAY_ON_FILE, onMS);
-        write_int(GREEN_DELAY_OFF_FILE, offMS);
-        write_int(BLUE_DELAY_ON_FILE, onMS);
-        write_int(BLUE_DELAY_OFF_FILE, offMS);
-    } else {
-        write_int(RED_DELAY_ON_FILE, 0);
-        write_int(RED_DELAY_OFF_FILE, 0);
-        write_int(GREEN_DELAY_ON_FILE, 0);
-        write_int(GREEN_DELAY_OFF_FILE, 0);
-        write_int(BLUE_DELAY_ON_FILE, 0);
-        write_int(BLUE_DELAY_OFF_FILE, 0);
-    }
-
-    return err;
 }
 
 static int
