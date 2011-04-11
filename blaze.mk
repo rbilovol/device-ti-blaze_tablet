@@ -49,7 +49,9 @@ PRODUCT_PACKAGES += \
 TI_OMX_POLICY_MANAGER := hardware/ti/omx/system/src/openmax_il/omx_policy_manager
 #PRODUCT_COPY_FILES += \
 #        $(TI_OMX_POLICY_MANAGER)/src/policytable.tbl:system/etc/policytable.tbl \
-#        device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_COPY_FILES += \
+        device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml
 
 # graphics
 PRODUCT_PACKAGES += \
