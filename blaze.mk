@@ -128,10 +128,9 @@ PRODUCT_PACKAGES += \
     libskiahwdec \
     SkLibTiJpeg_Test
 
-#Overlay
+#HWC Hal
 PRODUCT_PACKAGES += \
-    overlay.omap4 \
-    overlay_test
+    hwcomposer.omap4
 
 # Audio HAL
 PRODUCT_PACKAGES += \
