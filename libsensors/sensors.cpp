@@ -33,7 +33,7 @@
 #include "sensors.h"
 
 #include "BMA180Sensor.h"
-#include "ProximitySensor.h"
+#include "TSL2771Sensor.h"
 #include "BMP085Sensor.h"
 #include "HMC5843Sensor.h"
 #include "MPU3050Sensor.h"
@@ -73,8 +73,12 @@ static const struct sensor_t sSensorList[] = {
           "Bosch",
           1, SENSORS_ACCELERATION_HANDLE,
           SENSOR_TYPE_ACCELEROMETER, RANGE_A, RESOLUTION_A, 0.23f, 20000, { } },
-        { "SFH7741 Proximity sensor",
-          "OSRAM Opto Semiconductors",
+        { "TAOS TSL2771 Light sensor",
+          "TAOS",
+          1, SENSORS_LIGHT_HANDLE,
+          SENSOR_TYPE_LIGHT, 27000.0f, 1.0f, 0.75f, 0, { } },
+        { "TAOS TSL2771 Proximity sensor",
+          "TAOS",
           1, SENSORS_PROXIMITY_HANDLE,
           SENSOR_TYPE_PROXIMITY, 5.0f, 5.0f, 0.75f, 0, { } },
         { "BMP085 Pressure sensor",
@@ -117,7 +121,7 @@ struct sensors_module_t HAL_MODULE_INFO_SYM = {
                 version_major: 1,
                 version_minor: 0,
                 id: SENSORS_HARDWARE_MODULE_ID,
-                name: "Blaze Sensor module",
+                name: "Blaze Tablet Sensor module",
                 author: "Texas Instruments Inc.",
                 methods: &sensors_module_methods,
         },
@@ -136,10 +140,11 @@ struct sensors_poll_context_t {
 private:
     enum {
         accel           = 0,
-        proximity       = 1,
-	press_temp	= 2,
-	magno		= 3,
-	gyro		= 4,
+        press_temp      = 1,
+        magno           = 2,
+        gyro            = 3,
+        light           = 4,
+        prox            = 5,
         numSensorDrivers,
         numFds,
 
@@ -155,14 +160,14 @@ private:
     int handleToDriver(int handle) const {
         switch (handle) {
             case ID_A:
-		return accel;
+                return accel;
             case ID_M:
             case ID_O:
                 return magno;
             case ID_P:
-                return proximity;
+                 return prox;
             case ID_L:
-                return -1;
+                return light;
             case ID_PRESS:
             case ID_TEMP:
                 return press_temp;
@@ -182,11 +187,6 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[accel].events = POLLIN;
     mPollFds[accel].revents = 0;
 
-    mSensors[proximity] = new ProximitySensor();
-    mPollFds[proximity].fd = mSensors[proximity]->getFd();
-    mPollFds[proximity].events = POLLIN;
-    mPollFds[proximity].revents = 0;
-
     mSensors[press_temp] = new BMP085Sensor();
     mPollFds[press_temp].fd = mSensors[press_temp]->getFd();
     mPollFds[press_temp].events = POLLIN;
@@ -201,6 +201,16 @@ sensors_poll_context_t::sensors_poll_context_t()
     mPollFds[gyro].fd = mSensors[gyro]->getFd();
     mPollFds[gyro].events = POLLIN;
     mPollFds[gyro].revents = 0;
+
+    mSensors[light] = new TSL2771Sensor(ALS_INPUT_NAME);
+    mPollFds[light].fd = mSensors[light]->getFd();
+    mPollFds[light].events = POLLIN;
+    mPollFds[light].revents = 0;
+
+    mSensors[prox] = new TSL2771Sensor(PROX_INPUT_NAME);
+    mPollFds[prox].fd = mSensors[prox]->getFd();
+    mPollFds[prox].events = POLLIN;
+    mPollFds[prox].revents = 0;
 
     int wakeFds[2];
     int result = pipe(wakeFds);

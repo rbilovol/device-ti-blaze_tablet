@@ -29,14 +29,15 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS := -DLOG_TAG=\"Sensors\"
 LOCAL_SRC_FILES := \
-				sensors.cpp 			\
-				SensorBase.cpp			\
-				BMA180Sensor.cpp		\
-				ProximitySensor.cpp		\
-				BMP085Sensor.cpp		\
-				HMC5843Sensor.cpp		\
-				MPU3050Sensor.cpp		\
-				InputEventReader.cpp
+        sensors.cpp \
+        SensorBase.cpp \
+        BMA180Sensor.cpp \
+        ProximitySensor.cpp \
+        BMP085Sensor.cpp \
+        HMC5843Sensor.cpp \
+        MPU3050Sensor.cpp \
+        TSL2771Sensor.cpp \
+        InputEventReader.cpp
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libdl
 LOCAL_PRELINK_MODULE := false

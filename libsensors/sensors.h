@@ -47,10 +47,7 @@ __BEGIN_DECLS
 /*
  * The SENSORS Module
  */
-
-/* the GP2A is a binary proximity sensor that triggers around 5 cm on
- * this hardware */
-#define PROXIMITY_THRESHOLD_GP2A  5.0f
+#define PROXIMITY_THRESHOLD_GP2A  1.0f
 
 /*****************************************************************************/
 
