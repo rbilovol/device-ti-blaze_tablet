@@ -103,14 +103,15 @@ on fs
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c/enable
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c/delay
+    chown system system /sys/bus/i2c/drivers/tsl2771/4-0039
+    chown system system /sys/bus/i2c/drivers/tsl2771/4-0039/als_enable
+    chown system system /sys/bus/i2c/drivers/tsl2771/4-0039/prox_enable
     chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040
     chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/enable
     chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/delay
     chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068
     chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068/enable
     chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068/delay
-    chown system system /sys/devices/platform/sfh7741.1
-    chown system system /sys/devices/platform/sfh7741.1/state
     chown system system /sys/bus/i2c/drivers/bmp085/4-0077
     chown system system /sys/bus/i2c/drivers/bmp085/4-0077/enable
     chown system system /sys/bus/i2c/drivers/hmc5843/4-001e
