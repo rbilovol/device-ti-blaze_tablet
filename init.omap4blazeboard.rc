@@ -1,0 +1,56 @@
+import init.omap4blazeboard.usb.rc
+
+on early-init
+    export EXTERNAL_STORAGE /mnt/sdcard
+    mkdir /mnt/sdcard 0000 system system
+    # for backwards compatibility
+    symlink /mnt/sdcard /sdcard
+
+on post-fs-data
+    # we will remap this as /mnt/sdcard with the sdcard fuse tool
+    mkdir /data/media 0775 media_rw media_rw
+    chown media_rw media_rw /data/media
+
+on boot
+	mount debugfs /sys/kernel/debug /sys/kernel/debug
+	chmod 0666 /dev/pvrsrvkm
+	chmod 0444 /system/usr/keychars/omap4-keypad.kcm.bin
+
+on fs
+	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/system /system wait ro
+	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/userdata /data wait noatime nosuid nodev
+	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/cache /cache wait noatime nosuid nodev
+
+# take a wakelock on boot until PM is working
+	write /sys/power/wake_lock hack
+
+# change permissions for Sensors
+    chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c
+    chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c/enable
+    chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c/delay
+    chown system system /sys/bus/i2c/drivers/tsl2771/4-0039
+    chown system system /sys/bus/i2c/drivers/tsl2771/4-0039/als_enable
+    chown system system /sys/bus/i2c/drivers/tsl2771/4-0039/prox_enable
+    chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040
+    chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/enable
+    chown system system /sys/bus/i2c/drivers/bma180_accel/4-0040/delay
+    chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068
+    chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068/enable
+    chown system system /sys/bus/i2c/drivers/mpu3050_gyro/4-0068/delay
+    chown system system /sys/bus/i2c/drivers/bmp085/4-0077
+    chown system system /sys/bus/i2c/drivers/bmp085/4-0077/enable
+    chown system system /sys/bus/i2c/drivers/hmc5843/4-001e
+    chown system system /sys/bus/i2c/drivers/hmc5843/4-001e/enable
+    chown system system /sys/bus/i2c/drivers/hmc5843/4-001e/rate
+
+service pvrsrvinit /vendor/bin/pvrsrvinit
+	class core
+	user root
+	group root
+	oneshot
+
+# create virtual SD card at /mnt/sdcard, based on the /data/media directory
+# daemon will drop to user/group system/media_rw after initializing
+# underlying files in /data/media will be created with user and group media_rw (1023)
+service sdcard /system/bin/sdcard /data/media 1023 1023
+    class late_start

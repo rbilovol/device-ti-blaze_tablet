@@ -15,20 +15,10 @@
 LOCAL_PATH := $(call my-dir)
 
 # protect makefile from other boards
+# if some modules are built directly from this directory (not subdirectories),
+# their rules should be written here.
 ifeq ($(TARGET_DEVICE),blaze_tablet)
-
-#KD# probably not needed on tablet 
-#include $(CLEAR_VARS)
-#LOCAL_SRC_FILES := omap-keypad.kcm
-#LOCAL_MODULE_TAGS := optional
-#include $(BUILD_KEY_CHAR_MAP)
-
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := setup_fs.c
-LOCAL_MODULE := setup_fs
-LOCAL_MODULE_TAGS := optional
-#LOCAL_SHARED_LIBRARIES += libext4_utils libz
-include $(BUILD_EXECUTABLE)
 
 ifneq ($(TARGET_SIMULATOR),true)
 include $(call all-makefiles-under,$(LOCAL_PATH))
