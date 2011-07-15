@@ -50,7 +50,7 @@ PRODUCT_COPY_FILES := \
 device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	 device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
 	lights.blaze_tablet
 
 PRODUCT_PACKAGES += \
