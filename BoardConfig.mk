@@ -33,11 +33,11 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RECOVERY := true
 
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 mem=920M@0x80000000 init=/init vram=10M omapfb.vram=0:4M
+BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 init=/init vram=10M omapfb.vram=0:4M
 
 TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := omap4
-TARGET_BOOTLOADER_BOARD_NAME := blaze
+TARGET_BOOTLOADER_BOARD_NAME := blaze_tablet
 
 BOARD_EGL_CFG := device/ti/blaze_tablet/egl.cfg
 
