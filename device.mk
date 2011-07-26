@@ -42,6 +42,7 @@ PRODUCT_COPY_FILES := \
 	device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
         device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
@@ -89,6 +90,12 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PACKAGES += \
 	librs_jni \
 	com.android.future.usb.accessory
+
+# WI-Fi
+PRODUCT_PACKAGES += \
+	dhcpcd.conf \
+	TQS_D_1.7.ini \
+	calibrator
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
