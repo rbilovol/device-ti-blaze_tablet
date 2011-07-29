@@ -71,5 +71,9 @@ service dhcpcd /system/bin/dhcpcd -ABKL -d wlan0:0
     disabled
     oneshot
 
+service iprenew /system/bin/dhcpcd -n
+    disabled
+    oneshot
+
 on property:wlan.driver.status=ok
     chown wifi wifi /sys/devices/platform/wl1271/bt_coex_state
