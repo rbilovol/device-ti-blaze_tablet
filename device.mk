@@ -45,8 +45,7 @@ PRODUCT_COPY_FILES := \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
-        device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	hardware/ti/omap4xxx/domx/Ducati_binary/etc/firmware/ducati-m3.bin:system/vendor/firmware/ducati-m3.bin
+        device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
 PRODUCT_PACKAGES += \
 	lights.blaze_tablet
@@ -126,3 +125,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product-if-exists, vendor/ti/proprietary/omap4/ti-omap4-vendor.mk)
+$(call inherit-product-if-exists, vendor/ti/blaze/device-vendor.mk)
