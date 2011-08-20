@@ -2,7 +2,9 @@ on boot
     write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
     write /sys/class/android_usb/android0/iProduct $ro.product.model
     write /sys/class/android_usb/android0/iSerial $ro.serialno
-    write /sys/class/android_usb/f_mass_storage/inquiry_string "Google  Nexus Prime     0100"
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D101
+    write /sys/class/android_usb/f_mass_storage/inquiry_string "Texas Instruments  Blaze     0100"
 
 on property:sys.usb.config=none
     stop adbd
@@ -10,18 +12,26 @@ on property:sys.usb.config=none
     write /sys/class/android_usb/android0/bDeviceClass 0
     setprop sys.usb.state $sys.usb.config
 
+on property:sys.usb.config=adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D101
+    write /sys/class/android_usb/android0/functions $sys.usb.config
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state $sys.usb.config
+
 on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 4e31
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D108
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 4e32
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D109
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
     start adbd
@@ -29,8 +39,8 @@ on property:sys.usb.config=mtp,adb
 
 on property:sys.usb.config=rndis
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 4e33
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D103
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/bDeviceClass 224
     write /sys/class/android_usb/android0/enable 1
@@ -38,8 +48,8 @@ on property:sys.usb.config=rndis
 
 on property:sys.usb.config=rndis,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 4e34
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D104
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/bDeviceClass 224
     write /sys/class/android_usb/android0/enable 1
@@ -65,16 +75,16 @@ on property:sys.usb.config=ptp,adb
 
 on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 4e37
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D100
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 4e38
+    write /sys/class/android_usb/android0/idVendor 0451
+    write /sys/class/android_usb/android0/idProduct D102
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
     start adbd
