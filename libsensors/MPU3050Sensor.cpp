@@ -43,7 +43,6 @@ MPU3050Sensor::MPU3050Sensor()
     if (data_fd) {
         strcpy(input_sysfs_path, "/sys/bus/i2c/drivers/mpu3050_gyro/4-0068/");
         input_sysfs_path_len = strlen(input_sysfs_path);
-        enable(0, 1);
     }
 }
 
