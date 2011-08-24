@@ -51,9 +51,9 @@ PRODUCT_PACKAGES += \
 	lights.blaze_tablet
 
 #Remove this as it freezes at boot. Will re-enable once fixed
-#PRODUCT_PACKAGES += \
-#	sensors.blaze_tablet \
-#       sensors.test
+PRODUCT_PACKAGES += \
+	sensors.blaze_tablet \
+	sensor.test
 
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
