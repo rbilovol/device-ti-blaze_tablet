@@ -29,6 +29,10 @@
 #define PROX_INPUT_NAME    "tsl2771_prox"
 #define ALS_INPUT_NAME     "tsl2771_als"
 
+#define PROX_NEAR_LEN 2.0f
+#define PROX_FAR_LEN 8.0f
+#define PROX_NEAR_THRESHOLD 0x200
+
 /*****************************************************************************/
 
 struct input_event;

@@ -109,7 +109,7 @@ bool TSL2771Sensor::hasPendingEvents() const {
 
 float TSL2771Sensor::indexToValue(size_t index) const
 {
-    return index * PROXIMITY_THRESHOLD_GP2A;
+    return index > PROX_NEAR_THRESHOLD ? PROX_NEAR_LEN : PROX_FAR_LEN;
 }
 
 int TSL2771Sensor::readEvents(sensors_event_t* data, int count)
