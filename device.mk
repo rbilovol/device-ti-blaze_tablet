@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
 
 PRODUCT_PACKAGES := \
     ti_omap4_ducati_bins \
@@ -47,6 +48,10 @@ PRODUCT_COPY_FILES := \
 	device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
         device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
 
+# to mount the external storage (sdcard)
+PRODUCT_COPY_FILES += \
+        device/ti/blaze_tablet/vold.fstab:system/etc/vold.fstab
+
 PRODUCT_PACKAGES += \
 	lights.blaze_tablet
 
@@ -75,7 +80,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
-PRODUCT_CHARACTERISTICS := tablet,nosdcard
+PRODUCT_CHARACTERISTICS := tablet
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072
