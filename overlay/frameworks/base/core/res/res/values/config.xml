@@ -83,5 +83,11 @@
     <bool name="config_filterJumpyTouchEvents">true</bool>
 
 
+    <!-- Boolean indicating where bluetooth is always powered on but kept at
+         low power mode -->
+    <bool translatable="false" name="config_bluetooth_adapter_quick_switch">false</bool>
+
+
     <bool name="config_ui_enableFadingMarquee">false</bool>
+
 </resources>

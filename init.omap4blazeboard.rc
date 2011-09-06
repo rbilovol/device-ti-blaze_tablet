@@ -55,11 +55,23 @@ on fs
     chown system system /sys/bus/i2c/drivers/hmc5843/4-001e/enable
     chown system system /sys/bus/i2c/drivers/hmc5843/4-001e/rate
 
+# change permissions for Bluetooth/FM/GPS
+    chmod 0600 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0600 /dev/ttyO1
+    chown bluetooth bluetooth /dev/ttyO1
+
 service pvrsrvinit /vendor/bin/pvrsrvinit
 	class core
 	user root
 	group root
 	oneshot
+
+#shared transport user space mgr service for Bluetooth, FM and GPS
+service uim /system/bin/uim-sysfs
+	class core
+	user bluetooth
+	group bluetooth net_bt_admin
 
 # create virtual SD card at /mnt/sdcard, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing

@@ -15,6 +15,8 @@
 #
 DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
 
+DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
+
 PRODUCT_PACKAGES := \
     ti_omap4_ducati_bins \
     libOMX_Core \
@@ -44,6 +46,7 @@ PRODUCT_COPY_FILES := \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	device/ti/blaze_tablet/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
 	device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
         device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl
@@ -129,8 +132,16 @@ PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
+# BlueZ a2dp Audio HAL module
+PRODUCT_PACKAGES += audio.a2dp.default
+
+# BlueZ test tools
+PRODUCT_PACKAGES += \
+	hciconfig \
+	hcitool
 
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product-if-exists, vendor/ti/proprietary/omap4/ti-omap4-vendor.mk)
 $(call inherit-product-if-exists, vendor/ti/blaze/device-vendor.mk)
+$(call inherit-product-if-exists, hardware/ti/wpan/ti-wpan-products.mk)
