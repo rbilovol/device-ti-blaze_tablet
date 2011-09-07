@@ -64,6 +64,12 @@ PRODUCT_PACKAGES += \
 	sensor.test
 
 PRODUCT_PACKAGES += \
+       boardidentity \
+       libboardidentity \
+       libboard_idJNI \
+       Board_id
+
+PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
 # Live Wallpapers
