@@ -120,8 +120,8 @@ PRODUCT_PACKAGES += \
 	setup_fs
 
 # Audio HAL module
-#PRODUCT_PACKAGES += audio.primary.blaze_tablet \
-#	audio.a2dp.default
+PRODUCT_PACKAGES += audio.primary.blaze_tablet
+
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
