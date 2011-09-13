@@ -27,7 +27,7 @@ $(call inherit-product, device/ti/blaze_tablet/device.mk)
 $(call inherit-product-if-exists, vendor/ti/proprietary/omap4/ti-omap4-vendor.mk)
 
 # Discard inherited values and use our own instead.
-PRODUCT_NAME := full_blaze_tablet
+PRODUCT_NAME := blaze_tablet
 PRODUCT_DEVICE := blaze_tablet
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := Blaze_Tablet
