@@ -21,3 +21,4 @@
 # function: add_lunch_combo generic-eng
 
 add_lunch_combo blaze_tablet-userdebug
+add_lunch_combo blaze_tablet-eng
