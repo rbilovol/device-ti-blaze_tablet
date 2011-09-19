@@ -123,6 +123,8 @@ PRODUCT_PACKAGES += \
 # Audio HAL module
 PRODUCT_PACKAGES += audio.primary.blaze_tablet
 
+# Audioout libs
+PRODUCT_PACKAGES += libaudioutils
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
