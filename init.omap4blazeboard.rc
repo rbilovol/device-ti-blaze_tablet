@@ -129,3 +129,7 @@ service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
 
 on property:wlan.driver.status=ok
     chown wifi wifi /sys/devices/platform/wl1271/bt_coex_state
+
+service navl_server /system/bin/navd --android_log NAVD  -p3 -nav\"-c/system/etc/gps/config/pathconfigfile.txt\"
+    disabled
+    oneshot
