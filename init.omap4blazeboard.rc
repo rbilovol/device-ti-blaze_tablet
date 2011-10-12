@@ -28,6 +28,9 @@ on boot
 	insmod /system/lib/modules/mac80211.ko
 	insmod /system/lib/modules/wl12xx.ko
 
+# GPS
+        insmod /system/lib/modules/gps_drv.ko
+
 on fs
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/system /system wait ro
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/userdata /data wait noatime nosuid nodev nomblk_io_submit
