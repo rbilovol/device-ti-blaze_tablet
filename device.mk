@@ -29,8 +29,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hwcomposer.omap4
 
-#OMAPCamera App
-PRODUCT_PACKAGES += CameraOMAP4
+# Camera
+PRODUCT_PACKAGES += \
+    CameraOMAP4 \
+    Camera \
+    camera_test
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := device/ti/blaze_tablet/boot/zImage
