@@ -29,6 +29,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hwcomposer.omap4
 
+#Lib Skia test
+PRODUCT_PACKAGES += \
+    SkLibTiJpeg_Test
+
 # Camera
 PRODUCT_PACKAGES += \
     CameraOMAP4 \
