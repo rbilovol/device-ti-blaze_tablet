@@ -132,7 +132,7 @@
                    frameRate="30" />
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="48000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 
@@ -144,7 +144,7 @@
                    frameRate="30" />
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="48000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 
@@ -193,7 +193,7 @@
             <!-- audio setting is ignored -->
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="48000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 
@@ -205,7 +205,7 @@
                    frameRate="30" />
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="48000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 
@@ -262,7 +262,7 @@
                    frameRate="30" />
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="48000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 
@@ -310,7 +310,7 @@
                    frameRate="30" />
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="48000"
+                   sampleRate="44100"
                    channels="1" />
         </EncoderProfile>
 
@@ -349,7 +349,7 @@
 
     <AudioEncoderCap name="aac" enabled="true"
         minBitRate="8000" maxBitRate="96000"
-        minSampleRate="8000" maxSampleRate="48000"
+        minSampleRate="8000" maxSampleRate="44100"
         minChannels="1" maxChannels="1" />
 
     <AudioEncoderCap name="amrwb" enabled="true"
