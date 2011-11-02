@@ -163,6 +163,16 @@ PRODUCT_PACKAGES += \
 	hciconfig \
 	hcitool
 
+# SMC components for secure services like crypto, secure storage
+PRODUCT_PACKAGES += \
+        smc_pa.ift \
+        smc_normal_world_android_cfg.ini \
+        libsmapi.so \
+        libtf_crypto_sst.so \
+        libtfsw_jce_provider.so \
+        tfsw_jce_provider.jar \
+        tfctrl
+
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product-if-exists, vendor/ti/proprietary/omap4/ti-omap4-vendor.mk)
