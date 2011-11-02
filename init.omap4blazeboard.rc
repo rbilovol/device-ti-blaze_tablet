@@ -33,12 +33,18 @@ on boot
         insmod /system/lib/modules/gps_drv.ko
 
 on fs
+        mkdir /factory 0775 radio radio
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/system /system wait ro
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/userdata /data wait noatime nosuid nodev nomblk_io_submit
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/cache /cache wait noatime nosuid nodev nomblk_io_submit
+	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/efs /factory wait ro
 
 # change permissions for ION driver
     chmod 0777 /dev/ion
+
+# We chown/chmod /factory because mount is run as root + defaults
+	chown radio radio /factory
+	chmod 0775 /factory
 
 # change permissions for Sensors
     chown system system /sys/bus/i2c/drivers/cma3000_accl/4-001c
@@ -80,7 +86,7 @@ service pvrsrvinit /vendor/bin/pvrsrvinit
 # create filesystems if necessary
 service setup_fs /system/bin/setup_fs \
 		/dev/block/platform/omap/omap_hsmmc.1/by-name/cache \
-		/dev/block/platform/omap/omap_hsmmc.1/by-name/userdata \
+		/dev/block/platform/omap/omap_hsmmc.1/by-name/userdata
         class core
         user root
         group root
