@@ -74,6 +74,7 @@ uboot="${PRODUCT_OUT}u-boot.bin"
 systemimg="${PRODUCT_OUT}system.img"
 userdataimg="${PRODUCT_OUT}userdata.img"
 cacheimg="${PRODUCT_OUT}cache.img"
+efsimg="${PRODUCT_OUT}efs.img"
 
 
 # Verify that all the files required for the fastboot flash
@@ -123,6 +124,15 @@ ${FASTBOOT} flash boot 		${bootimg}
 #${FASTBOOT} flash recovery	$PRODUCT_OUT/recovery.img
 ${FASTBOOT} flash system 		${systemimg}
 ${FASTBOOT} flash userdata 	${userdataimg}
+
+if [ "$1" != "--noefs" ] ; then
+  echo "Creating efs.img as 16M ext4 img..."
+  test -d ./efs/ || mkdir efs
+  ./make_ext4fs -s -l 16M -a efs efs.img efs/
+  ${FASTBOOT} flash efs ${efsimg}
+else
+  echo "efs partition is untouched"
+fi
 
 #Create cache.img
 if [ ! -f ${cacheimg} ]
