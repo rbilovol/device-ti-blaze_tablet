@@ -26,6 +26,10 @@ on boot
 	write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 20000
 	write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 700000
 
+# autosuspend root hubs immediatly after attached devices
+	write /sys/bus/usb/devices/usb1/power/autosuspend_delay_ms 0
+	write /sys/bus/usb/devices/usb2/power/autosuspend_delay_ms 0
+
 # wi-fi
 	mkdir /data/misc/wifi/sockets 0770 wifi wifi
 	mkdir /data/misc/dhcp 0770 dhcp dhcp
