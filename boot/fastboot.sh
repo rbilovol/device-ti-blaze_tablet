@@ -130,10 +130,15 @@ ${FASTBOOT} flash system 	${systemimg}
 ${FASTBOOT} flash userdata 	${userdataimg}
 
 if [ "$1" != "--noefs" ] ; then
-  echo "Creating efs.img as 16M ext4 img..."
-  test -d ./efs/ || mkdir efs
-  ./make_ext4fs -s -l 16M -a efs efs.img efs/
-  ${FASTBOOT} flash efs ${efsimg}
+	if [ ! -f ${efsimg} ] ; then
+	  echo "Creating efs.img as 16M ext4 img..."
+	  test -d ./efs/ || mkdir efs
+	  ./make_ext4fs -s -l 16M -a efs efs.img efs/
+	else
+          echo "Using previously created efs.img..."
+	fi
+
+	${FASTBOOT} flash efs ${efsimg}
 else
   echo "efs partition is untouched"
 fi
