@@ -75,6 +75,7 @@ systemimg="${PRODUCT_OUT}system.img"
 userdataimg="${PRODUCT_OUT}userdata.img"
 cacheimg="${PRODUCT_OUT}cache.img"
 efsimg="${PRODUCT_OUT}efs.img"
+recoveryimg="${PRODUCT_OUT}recovery.img"
 
 
 # Verify that all the files required for the fastboot flash
@@ -104,7 +105,10 @@ if [ ! -e "${cacheimg}" ] ; then
   echo "Missing ${cacheimg}"
   exit -1;
 fi
-
+if [ ! -e "${recoveryimg}" ] ; then
+  echo "Missing ${recoveryimg}"
+  exit -1;
+fi
 
 echo "Flashing bootloader....."
 echo "   xloader: ${xloader}"
@@ -121,8 +125,8 @@ ${FASTBOOT} oem format
 
 echo "Flash android partitions"
 ${FASTBOOT} flash boot 		${bootimg}
-#${FASTBOOT} flash recovery	$PRODUCT_OUT/recovery.img
-${FASTBOOT} flash system 		${systemimg}
+${FASTBOOT} flash recovery	${recoveryimg}
+${FASTBOOT} flash system 	${systemimg}
 ${FASTBOOT} flash userdata 	${userdataimg}
 
 if [ "$1" != "--noefs" ] ; then
