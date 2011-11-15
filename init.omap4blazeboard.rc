@@ -92,10 +92,7 @@ on fs
     chown bluetooth bluetooth /dev/ttyO1
 
 # Change permissions on the governor (this is for debug only)
-    chmod 666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chmod 666 /sys/kernel/debug/pm_debug/enable_off_mode
-    chmod 666 /sys/devices/system/cpu/cpu1/online
-    chmod 666 /proc/cmdline
+    chmod 444 /proc/cmdline
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
 	class core
