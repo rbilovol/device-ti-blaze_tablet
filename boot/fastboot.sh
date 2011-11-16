@@ -107,7 +107,7 @@ if [ ! -e "${cacheimg}" ] ; then
 fi
 if [ ! -e "${recoveryimg}" ] ; then
   echo "Missing ${recoveryimg}"
-  exit -1;
+#  exit -1;
 fi
 
 echo "Flashing bootloader....."
@@ -125,7 +125,7 @@ ${FASTBOOT} oem format
 
 echo "Flash android partitions"
 ${FASTBOOT} flash boot 		${bootimg}
-${FASTBOOT} flash recovery	${recoveryimg}
+#${FASTBOOT} flash recovery	${recoveryimg}
 ${FASTBOOT} flash system 	${systemimg}
 ${FASTBOOT} flash userdata 	${userdataimg}
 
