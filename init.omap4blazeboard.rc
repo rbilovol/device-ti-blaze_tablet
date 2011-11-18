@@ -80,6 +80,11 @@ on fs
     chown system system /sys/bus/i2c/drivers/hmc5843/4-001e/enable
     chown system system /sys/bus/i2c/drivers/hmc5843/4-001e/rate
 
+# camera calibration - DCC folder permission
+    chown media media /data/misc/camera/R12_MVEN001_LD1_ND0_IR0_SH0_FL0_SVEN001_DCCID43
+    chown media media /data/misc/camera/R12_MVEN002_LD2_ND0_IR0_SH0_FL0_SVEN002_DCCID42
+    chown media media /data/misc/camera/R8_MVEN002_LD2_ND0_IR0_SH0_FL1_SVEN003_DCCID1042
+
 # change permissions for Bluetooth/FM/GPS
     chmod 0600 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
