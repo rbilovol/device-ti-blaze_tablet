@@ -127,7 +127,35 @@ echo "Flash android partitions"
 ${FASTBOOT} flash boot 		${bootimg}
 #${FASTBOOT} flash recovery	${recoveryimg}
 ${FASTBOOT} flash system 	${systemimg}
-${FASTBOOT} flash userdata 	${userdataimg}
+
+userdataimg_orig="${userdataimg}.orig"
+if [ ! -f $userdataimg_orig ]; then
+	cp $userdataimg $userdataimg_orig
+else
+	cp $userdataimg_orig $userdataimg
+fi
+
+echo "Resizing userdata.img"
+userdatasize=`./fastboot getvar userdata_size 2>&1 | grep "userdata_size" | awk '{print$2}'`
+if [ -n "$userdatasize" ]; then
+	echo Current userdata partition size=${userdatasize} KB
+	if [ -d "./tempuserdata" ]; then
+		echo "Removing tempuserdata"
+		rm -rf ./tempuserdata
+	fi
+	mkdir tempuserdata
+	./simg2img userdata.img userdata.img.raw
+	mount -o loop -t ext4 ./userdata.img.raw tempuserdata
+	./make_ext4fs -s -l ${userdatasize}K -a userdata userdata.img tempuserdata/
+	sync
+	umount tempuserdata
+	rm -rf ./tempuserdata
+	rm userdata.img.raw
+else
+	echo "Unable to get userdata partition size. Aborting resize"
+fi
+
+${FASTBOOT} flash userdata ${userdataimg}
 
 if [ "$1" != "--noefs" ] ; then
 	if [ ! -f ${efsimg} ] ; then
