@@ -96,6 +96,11 @@ on fs
     chmod 0600 /dev/ttyO1
     chown bluetooth bluetooth /dev/ttyO1
 
+# change permissions for S3D hardware
+    chown system system /sys/devices/platform/omapdss/display0/s3d_enable
+    chown system system /sys/devices/platform/omapdss/display1/s3d_enable
+    chown system system /sys/devices/platform/omapdss/display1/s3d_type
+
 # Change permissions on the governor (this is for debug only)
     chmod 444 /proc/cmdline
 
