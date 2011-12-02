@@ -31,7 +31,6 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 
 BOARD_HAVE_BLUETOOTH := true
 TARGET_NO_BOOTLOADER := true
-TARGET_NO_RECOVERY := true
 
 BOARD_KERNEL_BASE := 0x80000000
 # BOARD_KERNEL_CMDLINE
@@ -47,10 +46,10 @@ BOARD_EGL_CFG := device/ti/blaze_tablet/egl.cfg
 USE_OPENGL_RENDERER := true
 
 # Recovery
-#TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
-#TARGET_RECOVERY_UI_LIB := librecovery_ui_blaze_tablet
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+TARGET_RECOVERY_UI_LIB := librecovery_ui_blaze_tablet
 # device-specific extensions to the updater binary
-#TARGET_RELEASETOOLS_EXTENSIONS := device/ti/blaze_tablet
+TARGET_RELEASETOOLS_EXTENSIONS := device/ti/blaze_tablet
 
 BOARD_USES_SECURE_SERVICES := true
 
