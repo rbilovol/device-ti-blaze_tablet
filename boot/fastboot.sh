@@ -66,6 +66,10 @@ if [ "${product}" = "SDP4" ]; then
         product="Blaze"
 fi
 
+# Make EMU = HS
+if [ ${cputype} = "EMU" ]; then
+        cputype="HS"
+fi
 
 # Create the filename
 bootimg="${PRODUCT_OUT}boot.img"
