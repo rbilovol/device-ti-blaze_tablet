@@ -1,2 +1,2 @@
-require board=omap4blazeboard
+require board=Blaze_Tablet
 
