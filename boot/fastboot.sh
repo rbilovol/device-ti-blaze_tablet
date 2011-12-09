@@ -136,25 +136,42 @@ else
 fi
 
 echo "Resizing userdata.img"
+resizefail=0
 userdatasize=`./fastboot getvar userdata_size 2>&1 | grep "userdata_size" | awk '{print$2}'`
 if [ -n "$userdatasize" ]; then
-	echo Current userdata partition size=${userdatasize} KB
-	if [ -d "./tempuserdata" ]; then
-		echo "Removing tempuserdata"
-		rm -rf ./tempuserdata
-	fi
-	mkdir tempuserdata
-	./simg2img userdata.img userdata.img.raw
-	mount -o loop -t ext4 ./userdata.img.raw tempuserdata
-	./make_ext4fs -s -l ${userdatasize}K -a userdata userdata.img tempuserdata/
-	sync
-	umount tempuserdata
-	rm -rf ./tempuserdata
-	rm userdata.img.raw
+	while [ 1 ];do
+		echo Current userdata partition size=${userdatasize} KB
+		if [ -d "./data" ]; then
+			echo "Removing data"
+			rm -rf ./data || resizefail=1
+			if [ $resizefail -eq 1 ]; then
+				echo "unable to remove data folder" && break
+			fi
+		fi
+		mkdir ./data
+		./simg2img userdata.img userdata.img.raw
+		mount -o loop -o grpid -t ext4 ./userdata.img.raw ./data || resizefail=1
+		if [ $resizefail -eq 1 ]; then
+			echo "Mount failed" && break
+		fi
+		./make_ext4fs -s -l ${userdatasize}K -a data userdata.img data/
+		sync
+		umount data
+		sync
+		rm -rf ./data
+		rm userdata.img.raw
+		break
+	done
 else
-	echo "Unable to get userdata partition size. Aborting resize"
+	resizefail=1
 fi
 
+if [ $resizefail -eq 1 ]; then
+	echo "userdata resize failed."
+	echo "Eg: sudo ./fastboot.sh"
+	echo "For now, we are defaulting to original userdata.img"
+	cp $userdataimg_orig $userdataimg
+fi
 ${FASTBOOT} flash userdata ${userdataimg}
 
 if [ "$1" != "--noefs" ] ; then
@@ -186,3 +203,20 @@ ${FASTBOOT} flash cache 		${cacheimg}
 
 #reboot now
 ${FASTBOOT} reboot
+
+if [ $resizefail -eq 1 ]; then
+	echo "--------------------------------------------------"
+	echo "Attempt was made to resize the userdata partition image"
+	echo "to the size available on your SOM. But it failed either"
+	echo "because it failed to remove existing ./data folder or because"
+	echo "you are not running this script with superuser privileges"
+	echo "Don't panic! The script just loaded the original userdata.img"
+	echo "so, things should just work as expected. Just that the size"
+	echo "of /data will be smaller on target."
+	echo ""
+	echo "If you really want to resize userdata.img, remove any existing"
+	echo "./data folder and run \"sudo ./fastboot.sh\""
+	echo "For now, we are defaulting to original userdata.img"
+	echo "--------------------------------------------------"
+fi
+
