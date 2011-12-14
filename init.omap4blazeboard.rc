@@ -27,10 +27,10 @@ on boot
 	write /sys/module/pvrsrvkm/parameters/sgx_idle_mode 2
 	write /sys/module/pvrsrvkm/parameters/sgx_apm_latency 20
 
-# cpufreq interactive governor: timer 20ms, min sample 20ms, hispeed 700MHz
+# cpufreq interactive governor: timer 20ms, min sample 20ms, hispeed 800MHz
 	write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
 	write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 20000
-	write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 700000
+	write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 800000
 
 # autosuspend root hubs immediatly after attached devices
 	write /sys/bus/usb/devices/usb1/power/autosuspend_delay_ms 0
