@@ -39,6 +39,10 @@ on boot
 # Remove the Ultra Fast Media Card Reader on EHCI bus
 	write /sys/bus/usb/devices/1-1.1/remove 1
 
+# Set Remote wakeup flag for the two Hubs on the Tablet board
+	write /sys/bus/usb/devices/1-1/power/wakeup enabled
+	write /sys/bus/usb/devices/1-1.2/power/wakeup enabled
+
 # wi-fi
 	mkdir /data/misc/wifi/sockets 0770 wifi wifi
 	mkdir /data/misc/dhcp 0770 dhcp dhcp
