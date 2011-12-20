@@ -20,6 +20,7 @@ BOARD_USES_GENERIC_AUDIO := false
 USE_CAMERA_STUB := true
 OMAP_ENHANCEMENT := true
 ENHANCED_DOMX := true
+BLTSVILLE_ENHANCEMENT :=true
 # Use the non-open-source parts, if they're present
 #-include vendor/ti/blaze/BoardConfigVendor.mk
 
