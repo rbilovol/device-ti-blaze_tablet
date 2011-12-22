@@ -24,8 +24,7 @@ on boot
 	setprop ro.crypto.keyfile.userdata /dev/block/platform/omap/omap_hsmmc.1/by-name/crypto
 
 # configure APM timer
-	write /sys/module/pvrsrvkm/parameters/sgx_idle_mode 2
-	write /sys/module/pvrsrvkm/parameters/sgx_apm_latency 20
+	write /sys/module/pvrsrvkm/parameters/sgx_apm_latency 2
 
 # cpufreq interactive governor: timer 20ms, min sample 20ms, hispeed 800MHz
 	write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
