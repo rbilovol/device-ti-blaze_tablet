@@ -19,7 +19,6 @@
 BOARD_USES_GENERIC_AUDIO := false
 USE_CAMERA_STUB := true
 OMAP_ENHANCEMENT := true
-OMAP_ENHANCEMENT_S3D := true
 ENHANCED_DOMX := true
 # Use the non-open-source parts, if they're present
 #-include vendor/ti/blaze/BoardConfigVendor.mk
@@ -81,9 +80,6 @@ endif
 
 ifdef OMAP_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP4
-ifdef OMAP_ENHANCEMENT_S3D
-COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT_S3D
-endif
 endif
 
 BOARD_LIB_DUMPSTATE := libdumpstate.blaze_tablet
