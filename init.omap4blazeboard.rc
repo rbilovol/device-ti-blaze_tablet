@@ -133,12 +133,19 @@ service uim /system/bin/uim-sysfs
 	user bluetooth
 	group bluetooth net_bt_admin
 
+###################################################
+# MSHIELD SMC Daemon - component required to store persistent data coming
+#   from the SMC PA to the device persistent storage
+###################################################
 service tf_daemon /system/bin/tf_daemon \
     -d -c /vendor/etc/smc_normal_world_android_cfg.ini
     class main
     user system
     group system
 
+###################################################
+# MSHIELD SMC PA Control - installs the SMC PA into the Secure Environment
+###################################################
 service smc_pa /system/bin/smc_pa_ctrl \
     -c /vendor/etc/smc_normal_world_android_cfg.ini \
     start /vendor/firmware/smc_pa.ift
