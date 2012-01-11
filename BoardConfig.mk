@@ -83,6 +83,9 @@ ifdef OMAP_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP4
 endif
 
+#Set 32 byte cache line to true
+ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
+
 BOARD_LIB_DUMPSTATE := libdumpstate.blaze_tablet
 
 BOARD_VENDOR_TI_GPS_HARDWARE := omap4
