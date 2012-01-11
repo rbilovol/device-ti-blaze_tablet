@@ -14,10 +14,10 @@ on post-fs-data
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0775 media_rw media_rw
     chown media_rw media_rw /data/media
-	mkdir /data/smc 0770 system system
-        chown system system /data/smc/counter.bin
-        chown system system /data/smc/storage.bin
-        chown system system /data/smc/system.bin
+	mkdir /data/smc 0770 drmrpc drmrpc
+        chown drmrpc drmrpc /data/smc/counter.bin
+        chown drmrpc drmrpc /data/smc/storage.bin
+        chown drmrpc drmrpc /data/smc/system.bin
 
 	setprop vold.post_fs_data_done 1
 
@@ -140,8 +140,8 @@ service uim /system/bin/uim-sysfs
 service tf_daemon /system/bin/tf_daemon \
     -d -c /vendor/etc/smc_normal_world_android_cfg.ini
     class main
-    user system
-    group system
+    user root
+    group root
 
 ###################################################
 # MSHIELD SMC PA Control - installs the SMC PA into the Secure Environment
@@ -150,8 +150,8 @@ service smc_pa /system/bin/smc_pa_ctrl \
     -c /vendor/etc/smc_normal_world_android_cfg.ini \
     start /vendor/firmware/smc_pa.ift
     class core
-    user system
-    group system
+    user root
+    group root
     oneshot
 
 # create virtual SD card at /mnt/sdcard, based on the /data/media directory
