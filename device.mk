@@ -178,6 +178,9 @@ PRODUCT_PACKAGES += \
         tfsw_jce_provider.jar \
         tfctrl
 
+PRODUCT_PACKAGES += \
+	blaze_tablet_hdcp_keys
+
 $(call inherit-product, frameworks/base/build/tablet-dalvik-heap.mk)
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product-if-exists, vendor/ti/blaze/device-vendor.mk)
