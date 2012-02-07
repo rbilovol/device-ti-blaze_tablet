@@ -19,6 +19,7 @@
 BOARD_USES_GENERIC_AUDIO := false
 USE_CAMERA_STUB := true
 OMAP_ENHANCEMENT := true
+OMAP_ENHANCEMENT_S3D := true
 ENHANCED_DOMX := true
 BLTSVILLE_ENHANCEMENT :=true
 # Use the non-open-source parts, if they're present
@@ -81,6 +82,9 @@ endif
 
 ifdef OMAP_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP4
+ifdef OMAP_ENHANCEMENT_S3D
+COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT_S3D
+endif
 endif
 
 #Set 32 byte cache line to true
