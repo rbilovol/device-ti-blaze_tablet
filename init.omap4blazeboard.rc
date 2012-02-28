@@ -9,6 +9,10 @@ on early-init
 # create Ext SDcard mountpoint
     mkdir /mnt/ext_sdcard 0000 system system
 
+# create removable USB Mass Storage mountpoints
+    mkdir /mnt/ext_usb1 0000 system system
+    mkdir /mnt/ext_usb2 0000 system system
+
 
 on post-fs-data
     # we will remap this as /mnt/sdcard with the sdcard fuse tool

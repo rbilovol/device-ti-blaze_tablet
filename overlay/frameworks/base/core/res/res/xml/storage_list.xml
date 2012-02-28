@@ -41,4 +41,10 @@
     <storage android:mountPoint="/mnt/ext_sdcard"
              android:storageDescription="@string/storage_sd_card"
              android:removable="true" />
+    <storage android:mountPoint="/mnt/ext_usb1"
+             android:storageDescription="@string/storage_usb"
+             android:removable="true" />
+    <storage android:mountPoint="/mnt/ext_usb2"
+             android:storageDescription="@string/storage_usb"
+             android:removable="true" />
 </StorageList>
