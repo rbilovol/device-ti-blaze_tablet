@@ -67,6 +67,12 @@ on fs
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/efs /factory wait ro
 	setprop ro.crypto.fuse_sdcard true
 
+# H264 Encoder Profile setting
+# 1 - Base Profile
+# 2 - Main Profile
+# 8 - High Profile
+	setprop video.h264enc.profile 1
+
 # change permissions for ION driver
     chmod 0777 /dev/ion
 
