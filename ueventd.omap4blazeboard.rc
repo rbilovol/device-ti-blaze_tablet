@@ -33,7 +33,7 @@
 /dev/tf_ctrl              0660   drmrpc    drmrpc
 
 #for FM v4l2 Radio
-/dev/radio0               0666   system    radio
+/dev/radio0               0600   fmradio    fmradio
 
 #for GCX
 /dev/gcioctl              0666   system     system
