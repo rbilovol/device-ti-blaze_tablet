@@ -37,7 +37,9 @@ PRODUCT_PACKAGES += \
 
 # VTC test
 PRODUCT_PACKAGES += \
-    VTCTestApp
+    VTCTestApp \
+    VTCLoopbackTest \
+    CameraHardwareInterfaceTest
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := device/ti/blaze_tablet/boot/zImage
