@@ -33,7 +33,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     CameraOMAP4 \
     Camera \
-    camera_test
+    camera_test \
+    libcpcam_jni \
+    com.ti.omap.android.cpcam
+
+PRODUCT_COPY_FILES += \
+	hardware/ti/omap4xxx/cpcam/com.ti.omap.android.cpcam.xml:system/etc/permissions/com.ti.omap.android.cpcam.xml
 
 # VTC test
 PRODUCT_PACKAGES += \
@@ -48,7 +53,7 @@ LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
 #Need to revisit the fastboot copy files
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel \
 	device/ti/blaze_tablet/init.omap4blazeboard.rc:root/init.omap4blazeboard.rc \
 	device/ti/blaze_tablet/init.omap4blazeboard.usb.rc:root/init.omap4blazeboard.usb.rc \
