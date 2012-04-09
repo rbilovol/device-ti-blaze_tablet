@@ -139,7 +139,7 @@ PRODUCT_PACKAGES += \
 	setup_fs
 
 # Audio HAL module
-PRODUCT_PACKAGES += audio.primary.blaze_tablet
+PRODUCT_PACKAGES += audio.primary.omap4
 
 # Audioout libs
 PRODUCT_PACKAGES += libaudioutils
