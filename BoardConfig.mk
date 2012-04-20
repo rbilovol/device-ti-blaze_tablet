@@ -22,6 +22,7 @@ OMAP_ENHANCEMENT := true
 OMAP_ENHANCEMENT_S3D := true
 ENHANCED_DOMX := true
 BLTSVILLE_ENHANCEMENT :=true
+USE_ITTIAM_AAC := true
 # Use the non-open-source parts, if they're present
 #-include vendor/ti/blaze/BoardConfigVendor.mk
 
@@ -84,6 +85,9 @@ ifdef OMAP_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT -DTARGET_OMAP4
 ifdef OMAP_ENHANCEMENT_S3D
 COMMON_GLOBAL_CFLAGS += -DOMAP_ENHANCEMENT_S3D
+endif
+ifdef USE_ITTIAM_AAC
+COMMON_GLOBAL_CFLAGS += -DUSE_ITTIAM_AAC
 endif
 endif
 
