@@ -25,10 +25,6 @@ PRODUCT_PACKAGES := \
 PRODUCT_PACKAGES += \
     libtimemmgr
 
-#HWC Hal
-PRODUCT_PACKAGES += \
-    hwcomposer.omap4
-
 #Lib Skia test
 PRODUCT_PACKAGES += \
     SkLibTiJpeg_Test
@@ -139,7 +135,7 @@ PRODUCT_PACKAGES += \
 	setup_fs
 
 # Audio HAL module
-PRODUCT_PACKAGES += audio.primary.blaze_tablet
+PRODUCT_PACKAGES += audio.primary.omap4
 
 # Audioout libs
 PRODUCT_PACKAGES += libaudioutils
