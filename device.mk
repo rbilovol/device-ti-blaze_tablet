@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# define OMAP_ENHANCEMENT variables
+include device/ti/blaze_tablet/Config.mk
+
+
 #DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
 
 PRODUCT_PACKAGES := \
@@ -30,6 +34,15 @@ PRODUCT_PACKAGES := \
 #    SkLibTiJpeg_Test
 
 # Camera
+ifdef OMAP_ENHANCEMENT_CPCAM
+PRODUCT_PACKAGES += \
+    libcpcam_jni \
+    com.ti.omap.android.cpcam
+
+PRODUCT_COPY_FILES += \
+    hardware/ti/omap4xxx/cpcam/com.ti.omap.android.cpcam.xml:system/etc/permissions/com.ti.omap.android.cpcam.xml
+endif
+
 #PRODUCT_PACKAGES += \
 #    CameraOMAP4 \
 #    Camera \
@@ -203,3 +216,6 @@ $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ti-omap4-vend
 $(call inherit-product-if-exists, device/ti/proprietary-open/wl12xx/wlan/wl12xx-wlan-fw-products.mk)
 #$(call inherit-product-if-exists, device/ti/common-open/s3d/s3d-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ducati-blaze_tablet.mk)
+
+# clear OMAP_ENHANCEMENT variables
+$(call ti-clear-vars)

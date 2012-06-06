@@ -14,19 +14,15 @@
 # limitations under the License.
 #
 
+# define OMAP_ENHANCEMENT variables
+include device/ti/blaze_tablet/Config.mk
+
 # These two variables are set first, so they can be overridden
 # by BoardConfigVendor.mk
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
 
-#OMAP_ENHANCEMENT := true
-
 OMAP_ENHANCEMENT_MULTIGPU := true
-ifdef OMAP_ENHANCEMENT
-OMAP_ENHANCEMENT_S3D := true
-OMAP_ENHANCEMENT_CPCAM := true
-OMAP_ENHANCEMENT_VTC := true
-endif
 
 #ENHANCED_DOMX := true
 #BLTSVILLE_ENHANCEMENT :=true
