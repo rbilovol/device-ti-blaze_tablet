@@ -26,7 +26,11 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_blaze_tablet.mk \
+    $(LOCAL_DIR)/full_blaze_tablet.mk
+
+ifdef OMAP_ENHANCEMENT
+PRODUCT_MAKEFILES += \
     $(LOCAL_DIR)/sdk_addon/ti_omap_addon.mk
+endif
 
 

@@ -28,7 +28,9 @@
 #include <hardware/sensors.h>
 
 __BEGIN_DECLS
-
+#define LOGE(...)
+#define LOGD(...)
+#define LOGE_IF(...)
 /*****************************************************************************/
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))

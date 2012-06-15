@@ -1,10 +1,12 @@
 import init.omap4blazeboard.usb.rc
 
 on early-init
-    export EXTERNAL_STORAGE /mnt/sdcard
-    mkdir /mnt/sdcard 0000 system system
-    # for backwards compatibility
-    symlink /mnt/sdcard /sdcard
+	export EXTERNAL_STORAGE /storage/sdcard0
+	mkdir /storage 0050 system sdcard_r
+	mkdir /storage/sdcard0 0000 system system
+	# for backwards compatibility
+	symlink /storage/sdcard0 /sdcard
+	symlink /storage/sdcard0 /mnt/sdcard
 
 # create Ext SDcard mountpoint
     mkdir /mnt/ext_sdcard 0000 system system
@@ -13,23 +15,46 @@ on early-init
     mkdir /mnt/ext_usb1 0000 system system
     mkdir /mnt/ext_usb2 0000 system system
 
-
 on post-fs-data
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0775 media_rw media_rw
-    chown media_rw media_rw /data/media
+	# we will remap this as /storage/sdcard0 with the sdcard fuse tool
+	mkdir /data/media 0770 media_rw media_rw
+	chown media_rw media_rw /data/media
+	mkdir /data/misc/wifi 0770 wifi wifi
+	mkdir /data/misc/wifi/sockets 0770 wifi wifi
+	mkdir /data/misc/dhcp 0770 dhcp dhcp
+	chown dhcp dhcp /data/misc/dhcp
 	mkdir /data/smc 0770 drmrpc drmrpc
         chown drmrpc drmrpc /data/smc/counter.bin
         chown drmrpc drmrpc /data/smc/storage.bin
         chown drmrpc drmrpc /data/smc/system.bin
 
+	# camera calibration
+	mkdir /data/misc/camera 0770 media media
+	mkdir /data/misc/camera/R5_MVEN003_LD2_ND0_IR0_SH0_FL1_SVEN003_DCCID1044 0770 media media
+
+	mkdir /data/radio 0775 radio radio
+	mkdir /data/radio/log 0775 radio radio
+
 	setprop vold.post_fs_data_done 1
+
 
 on boot
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
 	chmod 0666 /dev/pvrsrvkm
 	chmod 0444 /system/usr/keychars/omap4-keypad.kcm.bin
 	setprop ro.crypto.keyfile.userdata /dev/block/platform/omap/omap_hsmmc.1/by-name/crypto
+
+# change permissions for mtd device
+	chmod 0660 /dev/mtd/mtd0
+	chown media media /dev/mtd/mtd0
+
+# change permissions for i2c-2 device
+	chmod 0660 /dev/i2c-2
+	chown media media /dev/i2c-2
+
+# change permissions for Tiler driver
+    chmod 0777 /dev/tiler
+    chmod 0777 /dev/dmm
 
 # cpufreq interactive governor: timer 20ms, min sample 20ms, hispeed 800MHz
 	write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
@@ -58,9 +83,10 @@ on boot
 	insmod /system/lib/modules/cfg80211.ko
 	insmod /system/lib/modules/mac80211.ko
 	insmod /system/lib/modules/wl12xx.ko debug_level=0x63c00
+	insmod /system/lib/modules/wl12xx_sdio.ko
 
 # GPS
-        insmod /system/lib/modules/gps_drv.ko
+#        insmod /system/lib/modules/gps_drv.ko
 
 on fs
 	mkdir /factory 0775 radio radio
@@ -177,22 +203,26 @@ service bugreport /system/bin/bugmailer.sh -v
 	oneshot
 	keycodes 114 115 102
 
-# create virtual SD card at /mnt/sdcard, based on the /data/media directory
+# create virtual SD card at /storage/sdcard0, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
 # underlying files in /data/media will be created with user and group media_rw (1023)
 service sdcard /system/bin/sdcard /data/media 1023 1023
-	class late_start
-
-service wpa_supplicant /system/bin/wpa_supplicant -Dnl80211 -iwlan0
 	class main
+
+service p2p_supplicant /system/bin/wpa_supplicant \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf
+    class main
 	socket wpa_wlan0 dgram 660 wifi wifi
 	disabled
 	oneshot
 
-service p2p_supplicant /system/bin/wpa_supplicant -Dnl80211 -ip2p_wlan0
-	socket wpa_p2p_wlan0 dgram 660 wifi wifi
-	disabled
-	oneshot
+service wpa_supplicant /system/bin/wpa_supplicant -iwlan0 -Dnl80211 \
+  -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
 	class main
@@ -229,11 +259,11 @@ service iprenew_bnep0 /system/bin/dhcpcd -n
 	disabled
 	oneshot
 
-service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
-	socket wpa_wlan1 dgram 660 wifi wifi
-	class main
-	disabled
-	oneshot
+#service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
+#	socket wpa_wlan1 dgram 660 wifi wifi
+#	class main
+#	disabled
+#	oneshot
 
 on property:init.svc.smc_pa=stopped
 	start tf_daemon
