@@ -158,7 +158,7 @@ again:
                 numEventReceived++;
             }
         } else {
-            LOGE("MPU3050Sensor: unknown event (type=%d, code=%d)",
+            ALOGE("MPU3050Sensor: unknown event (type=%d, code=%d)",
                     type, event->code);
         }
         mInputReader.next();

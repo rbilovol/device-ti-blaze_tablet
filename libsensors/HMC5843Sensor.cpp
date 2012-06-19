@@ -158,7 +158,7 @@ again:
                 numEventReceived++;
             }
         } else {
-            LOGE("HMC5843Sensor: unknown event (type=%d, code=%d)",
+            ALOGE("HMC5843Sensor: unknown event (type=%d, code=%d)",
                     type, event->code);
         }
         mInputReader.next();

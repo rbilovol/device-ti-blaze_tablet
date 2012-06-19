@@ -105,12 +105,12 @@ int BMP085Sensor::readEvents(sensors_event_t* data, int count)
         int type = event->type;
         if (type == EV_ABS) {
             if (event->code == EVENT_TYPE_PRESSURE) {
-                    LOGD("BMP085: Got pressure value %d\n", event->value);
+                    ALOGD("BMP085: Got pressure value %d\n", event->value);
                     mPendingEvents[Pressure].pressure = event->value * CONVERT_PRESS;
                     mPendingMask |= 1 << Pressure;
                     mInputReader.next();
             } else if (event->code == EVENT_TYPE_TEMPERATURE) {
-                    LOGD("BMP085: Got temperature value %d\n", event->value);
+                    ALOGD("BMP085: Got temperature value %d\n", event->value);
                     mPendingEvents[Temperature].temperature = event->value * CONVERT_TEMP;
                     mPendingMask |= 1 << Temperature;
                     mInputReader.next();
@@ -130,7 +130,7 @@ int BMP085Sensor::readEvents(sensors_event_t* data, int count)
                 mInputReader.next();
             }
         } else {
-            LOGE("BMP085Sensor: unknown event (type=%d, code=%d)",
+            ALOGE("BMP085Sensor: unknown event (type=%d, code=%d)",
                     type, event->code);
         }
     }

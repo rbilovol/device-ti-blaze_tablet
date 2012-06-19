@@ -21,7 +21,7 @@
 #include <errno.h>
 #include <sys/cdefs.h>
 #include <sys/types.h>
-#define LOGE_IF(...)
+
 
 /*****************************************************************************/
 

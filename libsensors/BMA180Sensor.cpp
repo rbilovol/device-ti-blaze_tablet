@@ -158,7 +158,7 @@ again:
                 numEventReceived++;
             }
         } else {
-            LOGE("AccelSensor: unknown event (type=%d, code=%d)",
+            ALOGE("AccelSensor: unknown event (type=%d, code=%d)",
                     type, event->code);
         }
         mInputReader.next();
