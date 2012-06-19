@@ -24,7 +24,7 @@ USE_CAMERA_STUB := true
 
 OMAP_ENHANCEMENT_MULTIGPU := true
 
-#ENHANCED_DOMX := true
+ENHANCED_DOMX := true
 #BLTSVILLE_ENHANCEMENT :=true
 #USE_ITTIAM_AAC := true
 # Use the non-open-source parts, if they're present
