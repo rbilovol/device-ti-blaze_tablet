@@ -502,7 +502,12 @@
     -->
     <VideoDecoderCap name="wmv" enabled="false"/>
     <AudioDecoderCap name="wma" enabled="false"/>
+    <!--
+        FIXME: AV team should port next patch from ICS in order to
+               Re-enable the mpeg2 decoder:
+               "Adding MPEG2 Decoder support to Stagefright and media"
     <VideoDecoderCap name="mpeg2" enabled="true" />
+    -->
 
     <!--
         The VideoEditor Capability configuration:
