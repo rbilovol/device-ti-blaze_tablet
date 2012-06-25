@@ -112,3 +112,7 @@ BOARD_LIB_DUMPSTATE := libdumpstate.blaze_tablet
 
 BOARD_VENDOR_TI_GPS_HARDWARE := omap4
 BOARD_GPS_LIBRARIES := libgps
+
+
+# Common device independent definitions
+include device/ti/common-open/BoardConfig.mk
