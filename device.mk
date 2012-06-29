@@ -57,7 +57,8 @@ PRODUCT_COPY_FILES += \
 	device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	device/ti/common-open/audio/audio_policy.conf:system/etc/audio_policy.conf \
-	device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml
+	device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml \
+	device/ti/blaze_tablet/cyttsp4-i2c.idc:system/usr/idc/cyttsp4-i2c.idc
 #	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 #	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 #	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
