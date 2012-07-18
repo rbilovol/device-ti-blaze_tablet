@@ -2,18 +2,17 @@ import init.omap4blazeboard.usb.rc
 
 on early-init
 	export EXTERNAL_STORAGE /storage/sdcard0
+	export SECONDARY_STORAGE /storage/sdcard1
 	mkdir /storage 0050 system sdcard_r
 	mkdir /storage/sdcard0 0000 system system
+	mkdir /storage/sdcard1 0000 system system
 	# for backwards compatibility
 	symlink /storage/sdcard0 /sdcard
 	symlink /storage/sdcard0 /mnt/sdcard
 
-# create Ext SDcard mountpoint
-    mkdir /mnt/ext_sdcard 0000 system system
-
 # create removable USB Mass Storage mountpoints
-    mkdir /mnt/ext_usb1 0000 system system
-    mkdir /mnt/ext_usb2 0000 system system
+    mkdir /storage/usb0 0000 system system
+    mkdir /storage/usb1 0000 system system
 
 on post-fs-data
 	# we will remap this as /storage/sdcard0 with the sdcard fuse tool
