@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-#OMAP_ENHANCEMENT := true
+OMAP_ENHANCEMENT := true
 #OMAP_ENHANCEMENT_S3D := true
 #OMAP_ENHANCEMENT_CPCAM := true
 #OMAP_ENHANCEMENT_VTC := true
