@@ -162,5 +162,5 @@
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 
      <!-- Component name of the service providing network location support. -->
-    <string name="config_networkLocationProvider">com.google.android.location.NetworkLocationProvider</string>
+    <string name="config_networkLocationProviderPackageName">com.google.android.location</string>
 </resources>
