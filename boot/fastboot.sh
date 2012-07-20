@@ -1,11 +1,10 @@
 #!/bin/bash
 
-export FASTBOOT=${FASTBOOT-"./../../../../out/host/linux-x86/bin/fastboot"}
-export PRODUCT_OUT=${PRODUCT_OUT-"./"}
-
 usage ()
 {
 	echo "Usage: %fastboot.sh ";
+	echo "options:";
+	echo "--pwd     Force usage of fastboot and images from pwd"
 	exit 1;
 }
 
@@ -13,6 +12,19 @@ usage ()
 if [ "$1" = "--help" ] ; then
 	usage
 fi
+
+if [ -n "$ANDROID_BUILD_TOP" ] && [ "$1" != "--pwd" ] ; then
+	export FASTBOOT=${FASTBOOT-"${ANDROID_HOST_OUT}/bin/fastboot"}
+	export PRODUCT_OUT=${PRODUCT_OUT-"${ANDROID_PRODUCT_OUT}"}
+else
+	# Pre-packaged DB
+	export FASTBOOT=${FASTBOOT-"./fastboot"}
+	export PRODUCT_OUT=${PRODUCT_OUT-"./"}
+fi
+
+echo "Fastboot: $FASTBOOT"
+echo "Image location: $PRODUCT_OUT"
+
 
 # =============================================================================
 # pre-run
