@@ -53,6 +53,7 @@ fi
 
 # poll the board to find out its configuration
 product=`${FASTBOOT} getvar product 2>&1 | grep product | awk '{print$2}'`
+cpu=`${FASTBOOT} getvar cpu 2>&1         | grep cpu     | awk '{print$2}'`
 cputype=`${FASTBOOT} getvar secure 2>&1  | grep secure  | awk '{print$2}'`
 cpurev=`${FASTBOOT} getvar cpurev 2>&1   | grep cpurev  | awk '{print$2}'`
 
@@ -73,7 +74,7 @@ fi
 
 # Create the filename
 bootimg="${PRODUCT_OUT}boot.img"
-xloader="${PRODUCT_OUT}${product}_${cputype}_${cpurev}_MLO"
+xloader="${PRODUCT_OUT}${product}_${cpu}_${cputype}_${cpurev}_MLO"
 uboot="${PRODUCT_OUT}u-boot.bin"
 systemimg="${PRODUCT_OUT}system.img"
 userdataimg="${PRODUCT_OUT}userdata.img"
