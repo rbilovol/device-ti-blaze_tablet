@@ -77,7 +77,6 @@ PRODUCT_COPY_FILES += \
 #	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 #	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 #	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-#	device/ti/blaze_tablet/cyttsp4-i2c.idc:system/usr/idc/cyttsp4-i2c.idc
 
 # to mount the external storage (sdcard)
 PRODUCT_COPY_FILES += \
