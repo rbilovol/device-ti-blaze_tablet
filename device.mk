@@ -43,10 +43,10 @@ PRODUCT_COPY_FILES += \
     hardware/ti/omap4xxx/cpcam/com.ti.omap.android.cpcam.xml:system/etc/permissions/com.ti.omap.android.cpcam.xml
 endif
 
-#PRODUCT_PACKAGES += \
-#    CameraOMAP4 \
-#    Camera \
-#    camera_test
+PRODUCT_PACKAGES += \
+    CameraOMAP4 \
+    Camera \
+    camera_test
 
 PRODUCT_PACKAGES += \
     power.blaze_tablet
