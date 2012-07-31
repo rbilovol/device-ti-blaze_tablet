@@ -154,6 +154,7 @@ PRODUCT_PACKAGES += \
 
 # Audio HAL module
 PRODUCT_PACKAGES += audio.primary.omap4
+PRODUCT_PACKAGES += audio.hdmi.omap4
 
 # Audioout libs
 PRODUCT_PACKAGES += libaudioutils
