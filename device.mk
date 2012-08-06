@@ -69,6 +69,7 @@ PRODUCT_COPY_FILES += \
 	device/ti/blaze_tablet/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
 	device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	device/ti/common-open/audio/audio_policy.conf:system/etc/audio_policy.conf \
 	device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/blaze_tablet/media_codecs.xml:system/etc/media_codecs.xml \
@@ -77,7 +78,6 @@ PRODUCT_COPY_FILES += \
 #	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 #	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 #	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-#	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 
 # to mount the external storage (sdcard)
 PRODUCT_COPY_FILES += \
