@@ -18,6 +18,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
 #define LOG_TAG "Blaze Tablet PowerHAL"
 #include <utils/Log.h>
@@ -29,6 +30,11 @@
 #define CPUFREQ_CPU0 "/sys/devices/system/cpu/cpu0/cpufreq/"
 #define BOOSTPULSE_PATH (CPUFREQ_INTERACTIVE "boostpulse")
 
+#define MAX_FREQ_NUMBER 10
+
+static int freq_num;
+static char *freq_list[MAX_FREQ_NUMBER];
+
 struct blaze_tablet_power_module {
     struct power_module base;
     pthread_mutex_t lock;
@@ -36,6 +42,27 @@ struct blaze_tablet_power_module {
     int boostpulse_warned;
     int inited;
 };
+
+static int str_to_tokens(char *str, char **token, int max_token_idx)
+{
+    char *pos, *start_pos = str;
+    char *token_pos;
+    int token_idx = 0;
+
+    if (!str || !token || !max_token_idx) {
+        return 0;
+    }
+
+    do {
+        token_pos = strtok_r(start_pos, " \t\r\n", &pos);
+
+        if (token_pos)
+            token[token_idx++] = strdup(token_pos);
+        start_pos = NULL;
+    } while (token_pos && token_idx < max_token_idx);
+
+    return token_idx;
+}
 
 static void sysfs_write(char *path, char *s)
 {
@@ -58,15 +85,57 @@ static void sysfs_write(char *path, char *s)
     close(fd);
 }
 
+static int sysfs_read(char *path, char *s, int s_size)
+{
+    char buf[80];
+    int len, i;
+    int fd;
+
+    if (!path || !s || !s_size) {
+        return -1;
+    }
+
+    fd = open(path, O_RDONLY);
+    if (fd < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error opening %s: %s\n", path, buf);
+        return fd;
+    }
+
+    len = read(fd, s, s_size-1);
+    if (len < 0) {
+        strerror_r(errno, buf, sizeof(buf));
+        ALOGE("Error reading from %s: %s\n", path, buf);
+    } else {
+        s[len] = '\0';
+    }
+
+    close(fd);
+    return len;
+}
+
 static void blaze_tablet_power_init(struct power_module *module)
 {
     struct blaze_tablet_power_module *blaze_tablet =
                                    (struct blaze_tablet_power_module *) module;
+    int tmp;
+    char freq_buf[MAX_FREQ_NUMBER*10];
+
+    tmp = sysfs_read(CPUFREQ_CPU0 "scaling_available_frequencies",
+                                                   freq_buf, sizeof(freq_buf));
+    if (tmp <= 0) {
+        return;
+    }
+
+    freq_num = str_to_tokens(freq_buf, freq_list, MAX_FREQ_NUMBER);
+    if (!freq_num) {
+        return;
+    }
+
     /*
      * cpufreq interactive governor: timer 20ms, min sample 60ms,
      * hispeed 700MHz at load 50%.
      */
-
     sysfs_write(CPUFREQ_INTERACTIVE "timer_rate", "20000");
     sysfs_write(CPUFREQ_INTERACTIVE "min_sample_time","60000");
     sysfs_write(CPUFREQ_INTERACTIVE "hispeed_freq", "700000");
