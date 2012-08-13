@@ -27,7 +27,7 @@
 
 #define BOOSTPULSE_PATH "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
 
-struct tuna_power_module {
+struct blaze_tablet_power_module {
     struct power_module base;
     pthread_mutex_t lock;
     int boostpulse_fd;
@@ -55,7 +55,7 @@ static void sysfs_write(char *path, char *s)
     close(fd);
 }
 
-static void tuna_power_init(struct power_module *module)
+static void blaze_tablet_power_init(struct power_module *module)
 {
     /*
      * cpufreq interactive governor: timer 20ms, min sample 60ms,
@@ -74,29 +74,30 @@ static void tuna_power_init(struct power_module *module)
                 "100000");
 }
 
-static int boostpulse_open(struct tuna_power_module *tuna)
+static int boostpulse_open(struct blaze_tablet_power_module *blaze_tablet)
 {
     char buf[80];
 
-    pthread_mutex_lock(&tuna->lock);
+    pthread_mutex_lock(&blaze_tablet->lock);
 
-    if (tuna->boostpulse_fd < 0) {
-        tuna->boostpulse_fd = open(BOOSTPULSE_PATH, O_WRONLY);
+    if (blaze_tablet->boostpulse_fd < 0) {
+        blaze_tablet->boostpulse_fd = open(BOOSTPULSE_PATH, O_WRONLY);
 
-        if (tuna->boostpulse_fd < 0) {
-            if (!tuna->boostpulse_warned) {
+        if (blaze_tablet->boostpulse_fd < 0) {
+            if (!blaze_tablet->boostpulse_warned) {
                 strerror_r(errno, buf, sizeof(buf));
                 ALOGE("Error opening %s: %s\n", BOOSTPULSE_PATH, buf);
-                tuna->boostpulse_warned = 1;
+                blaze_tablet->boostpulse_warned = 1;
             }
         }
     }
 
-    pthread_mutex_unlock(&tuna->lock);
-    return tuna->boostpulse_fd;
+    pthread_mutex_unlock(&blaze_tablet->lock);
+    return blaze_tablet->boostpulse_fd;
 }
 
-static void tuna_power_set_interactive(struct power_module *module, int on)
+static void blaze_tablet_power_set_interactive(struct power_module *module,
+                                               int on)
 {
     /*
      * Lower maximum frequency when screen is off.  CPU 0 and 1 share a
@@ -107,23 +108,24 @@ static void tuna_power_set_interactive(struct power_module *module, int on)
                 on ? "1200000" : "700000");
 }
 
-static void tuna_power_hint(struct power_module *module, power_hint_t hint,
-                            void *data)
+static void blaze_tablet_power_hint(struct power_module *module,
+                                    power_hint_t hint, void *data)
 {
-    struct tuna_power_module *tuna = (struct tuna_power_module *) module;
+    struct blaze_tablet_power_module *blaze_tablet =
+            (struct blaze_tablet_power_module *) module;
     char buf[80];
     int len;
 
     switch (hint) {
     case POWER_HINT_INTERACTION:
-        if (boostpulse_open(tuna) >= 0) {
-	    len = write(tuna->boostpulse_fd, "1", 1);
+        if (boostpulse_open(blaze_tablet) >= 0) {
+            len = write(blaze_tablet->boostpulse_fd, "1", 1);
 
-	    if (len < 0) {
-	        strerror_r(errno, buf, sizeof(buf));
-		ALOGE("Error writing to %s: %s\n", BOOSTPULSE_PATH, buf);
-	    }
-	}
+            if (len < 0) {
+                strerror_r(errno, buf, sizeof(buf));
+                ALOGE("Error writing to %s: %s\n", BOOSTPULSE_PATH, buf);
+            }
+        }
         break;
 
     case POWER_HINT_VSYNC:
@@ -138,21 +140,21 @@ static struct hw_module_methods_t power_module_methods = {
     .open = NULL,
 };
 
-struct tuna_power_module HAL_MODULE_INFO_SYM = {
+struct blaze_tablet_power_module HAL_MODULE_INFO_SYM = {
     base: {
         common: {
             tag: HARDWARE_MODULE_TAG,
             module_api_version: POWER_MODULE_API_VERSION_0_2,
             hal_api_version: HARDWARE_HAL_API_VERSION,
             id: POWER_HARDWARE_MODULE_ID,
-            name: "Tuna Power HAL",
+            name: "Blaze Tablet Power HAL",
             author: "The Android Open Source Project",
             methods: &power_module_methods,
         },
 
-       init: tuna_power_init,
-       setInteractive: tuna_power_set_interactive,
-       powerHint: tuna_power_hint,
+       init: blaze_tablet_power_init,
+       setInteractive: blaze_tablet_power_set_interactive,
+       powerHint: blaze_tablet_power_hint,
     },
 
     lock: PTHREAD_MUTEX_INITIALIZER,
