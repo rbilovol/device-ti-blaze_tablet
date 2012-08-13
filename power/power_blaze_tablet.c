@@ -34,6 +34,7 @@ struct blaze_tablet_power_module {
     pthread_mutex_t lock;
     int boostpulse_fd;
     int boostpulse_warned;
+    int inited;
 };
 
 static void sysfs_write(char *path, char *s)
@@ -59,6 +60,8 @@ static void sysfs_write(char *path, char *s)
 
 static void blaze_tablet_power_init(struct power_module *module)
 {
+    struct blaze_tablet_power_module *blaze_tablet =
+                                   (struct blaze_tablet_power_module *) module;
     /*
      * cpufreq interactive governor: timer 20ms, min sample 60ms,
      * hispeed 700MHz at load 50%.
@@ -69,6 +72,9 @@ static void blaze_tablet_power_init(struct power_module *module)
     sysfs_write(CPUFREQ_INTERACTIVE "hispeed_freq", "700000");
     sysfs_write(CPUFREQ_INTERACTIVE "go_hispeed_load", "50");
     sysfs_write(CPUFREQ_INTERACTIVE "above_hispeed_delay", "100000");
+
+    ALOGI("Initialized successfully");
+    blaze_tablet->inited = 1;
 }
 
 static int boostpulse_open(struct blaze_tablet_power_module *blaze_tablet)
@@ -96,6 +102,13 @@ static int boostpulse_open(struct blaze_tablet_power_module *blaze_tablet)
 static void blaze_tablet_power_set_interactive(struct power_module *module,
                                                int on)
 {
+    struct blaze_tablet_power_module *blaze_tablet =
+                                   (struct blaze_tablet_power_module *) module;
+
+    if (!blaze_tablet->inited) {
+        return;
+    }
+
     /*
      * Lower maximum frequency when screen is off.  CPU 0 and 1 share a
      * cpufreq policy.
@@ -112,6 +125,10 @@ static void blaze_tablet_power_hint(struct power_module *module,
             (struct blaze_tablet_power_module *) module;
     char buf[80];
     int len;
+
+    if (!blaze_tablet->inited) {
+        return;
+    }
 
     switch (hint) {
     case POWER_HINT_INTERACTION:
