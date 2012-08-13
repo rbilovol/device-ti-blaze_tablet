@@ -25,7 +25,9 @@
 #include <hardware/hardware.h>
 #include <hardware/power.h>
 
-#define BOOSTPULSE_PATH "/sys/devices/system/cpu/cpufreq/interactive/boostpulse"
+#define CPUFREQ_INTERACTIVE "/sys/devices/system/cpu/cpufreq/interactive/"
+#define CPUFREQ_CPU0 "/sys/devices/system/cpu/cpu0/cpufreq/"
+#define BOOSTPULSE_PATH (CPUFREQ_INTERACTIVE "boostpulse")
 
 struct blaze_tablet_power_module {
     struct power_module base;
@@ -62,16 +64,11 @@ static void blaze_tablet_power_init(struct power_module *module)
      * hispeed 700MHz at load 50%.
      */
 
-    sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/timer_rate",
-                "20000");
-    sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/min_sample_time",
-                "60000");
-    sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/hispeed_freq",
-                "700000");
-    sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load",
-                "50");
-    sysfs_write("/sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay",
-                "100000");
+    sysfs_write(CPUFREQ_INTERACTIVE "timer_rate", "20000");
+    sysfs_write(CPUFREQ_INTERACTIVE "min_sample_time","60000");
+    sysfs_write(CPUFREQ_INTERACTIVE "hispeed_freq", "700000");
+    sysfs_write(CPUFREQ_INTERACTIVE "go_hispeed_load", "50");
+    sysfs_write(CPUFREQ_INTERACTIVE "above_hispeed_delay", "100000");
 }
 
 static int boostpulse_open(struct blaze_tablet_power_module *blaze_tablet)
@@ -104,7 +101,7 @@ static void blaze_tablet_power_set_interactive(struct power_module *module,
      * cpufreq policy.
      */
 
-    sysfs_write("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+    sysfs_write(CPUFREQ_CPU0 "scaling_max_freq",
                 on ? "1200000" : "700000");
 }
 
