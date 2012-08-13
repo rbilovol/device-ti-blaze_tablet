@@ -31,9 +31,11 @@
 #define BOOSTPULSE_PATH (CPUFREQ_INTERACTIVE "boostpulse")
 
 #define MAX_FREQ_NUMBER 10
+#define NOM_FREQ_INDEX 2
 
 static int freq_num;
 static char *freq_list[MAX_FREQ_NUMBER];
+static char *max_freq, *nom_freq;
 
 struct blaze_tablet_power_module {
     struct power_module base;
@@ -132,13 +134,13 @@ static void blaze_tablet_power_init(struct power_module *module)
         return;
     }
 
-    /*
-     * cpufreq interactive governor: timer 20ms, min sample 60ms,
-     * hispeed 700MHz at load 50%.
-     */
+    max_freq = freq_list[freq_num - 1];
+    tmp = (NOM_FREQ_INDEX > freq_num) ? freq_num : NOM_FREQ_INDEX;
+    nom_freq = freq_list[tmp - 1];
+
     sysfs_write(CPUFREQ_INTERACTIVE "timer_rate", "20000");
     sysfs_write(CPUFREQ_INTERACTIVE "min_sample_time","60000");
-    sysfs_write(CPUFREQ_INTERACTIVE "hispeed_freq", "700000");
+    sysfs_write(CPUFREQ_INTERACTIVE "hispeed_freq", nom_freq);
     sysfs_write(CPUFREQ_INTERACTIVE "go_hispeed_load", "50");
     sysfs_write(CPUFREQ_INTERACTIVE "above_hispeed_delay", "100000");
 
@@ -183,8 +185,7 @@ static void blaze_tablet_power_set_interactive(struct power_module *module,
      * cpufreq policy.
      */
 
-    sysfs_write(CPUFREQ_CPU0 "scaling_max_freq",
-                on ? "1200000" : "700000");
+    sysfs_write(CPUFREQ_CPU0 "scaling_max_freq", on ? max_freq : nom_freq);
 }
 
 static void blaze_tablet_power_hint(struct power_module *module,
