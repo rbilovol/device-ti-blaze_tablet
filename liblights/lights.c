@@ -107,6 +107,9 @@ rgb_to_brightness(struct light_state_t const* state)
             + (150*((color>>8)&0x00ff)) + (29*(color&0x00ff))) >> 8;
 }
 
+/* Previous value of brightness */
+static int brightness_prev_value = -1;
+
 static int
 set_light_backlight(struct light_device_t* dev,
         struct light_state_t const* state)
@@ -114,9 +117,18 @@ set_light_backlight(struct light_device_t* dev,
     int err = 0;
     int brightness = rgb_to_brightness(state);
 
+    if (brightness == brightness_prev_value) {
+        /* No need to set same value twice */
+        return err;
+    }
+
     pthread_mutex_lock(&g_lock);
     err = write_int(LCD_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
+
+    if (!err) {
+        brightness_prev_value = brightness;
+    }
 
     return err;
 }
