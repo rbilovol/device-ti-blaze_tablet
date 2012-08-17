@@ -22,3 +22,5 @@ omap.audio.mic.sub=DMic0R
 omap.audio.power=PingPong
 #define a property for hdmi sink channel count
 dolby.audio.hdmi.channels=0
+#System property for dolby 5.1 codec integration
+dolby.audio.sink.info=speaker
