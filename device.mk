@@ -160,6 +160,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += audio.primary.omap4
 PRODUCT_PACKAGES += audio.hdmi.omap4
 
+# Dolby DD+ Decoder
+ifdef OMAP_ENHANCEMENT
+PRODUCT_PACKAGES += \
+        libstagefright_soft_ddpdec
+endif
+
 # Audioout libs
 PRODUCT_PACKAGES += libaudioutils
 
