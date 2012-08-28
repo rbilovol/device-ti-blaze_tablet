@@ -84,7 +84,7 @@ on boot
 	insmod /system/lib/modules/wl12xx.ko
 
 # GPS
-#        insmod /system/lib/modules/gps_drv.ko
+        insmod /system/lib/modules/gps_drv.ko
 
 on fs
 	mkdir /factory 0775 radio radio
