@@ -167,6 +167,12 @@ PRODUCT_PACKAGES += \
         libstagefright_soft_ddpdec
 endif
 
+# Dolby Surround AudioEffects
+ifdef OMAP_ENHANCEMENT
+PRODUCT_PACKAGES += \
+        libdseffect
+endif
+
 # Audioout libs
 PRODUCT_PACKAGES += libaudioutils
 
