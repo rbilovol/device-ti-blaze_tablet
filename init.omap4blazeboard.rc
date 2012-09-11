@@ -88,6 +88,7 @@ on boot
 
 on fs
 	mkdir /factory 0775 radio radio
+	symlink /dev/block/platform /dev/block/platform/omap
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/system /system wait ro
 	setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/userdata /data wait noatime nosuid nodev nomblk_io_submit
