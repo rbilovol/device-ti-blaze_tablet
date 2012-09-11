@@ -222,6 +222,6 @@ $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ti-omap4-vend
 $(call inherit-product-if-exists, device/ti/proprietary-open/wl12xx/wlan/wl12xx-wlan-fw-products.mk)
 $(call inherit-product-if-exists, device/ti/common-open/s3d/s3d-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ducati-blaze_tablet.mk)
-
+$(call inherit-product-if-exists, device/ti/proprietary-open/omap4/dsp_fw.mk)
 # clear OMAP_ENHANCEMENT variables
 $(call ti-clear-vars)
