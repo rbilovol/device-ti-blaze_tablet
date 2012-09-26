@@ -36,6 +36,21 @@ on post-fs-data
 
 	setprop vold.post_fs_data_done 1
 
+#insert bluetooth modules
+	insmod /system/lib/modules/compat.ko
+	insmod /system/lib/modules/bluetooth.ko force_acl_master=1 enable_le=1
+#	insmod /system/lib/modules/bluetooth.ko
+	insmod /system/lib/modules/rfcomm.ko
+	insmod /system/lib/modules/hidp.ko
+	insmod /system/lib/modules/bnep.ko
+	insmod /system/lib/modules/btwilink.ko
+	chmod 0666 /dev/uhid
+
+# change permissions for Bluetooth/FM/GPS
+        chmod 0600 /sys/class/rfkill/rfkill0/state
+        chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+        chmod 0600 /dev/ttyO1
+        chown bluetooth bluetooth /dev/ttyO1
 
 on boot
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -136,12 +151,6 @@ on fs
     chown media media /data/misc/camera/R12_MVEN001_LD1_ND0_IR0_SH0_FL0_SVEN001_DCCID43
     chown media media /data/misc/camera/R12_MVEN002_LD2_ND0_IR0_SH0_FL0_SVEN002_DCCID42
     chown media media /data/misc/camera/R8_MVEN002_LD2_ND0_IR0_SH0_FL1_SVEN003_DCCID1042
-
-# change permissions for Bluetooth/FM/GPS
-    chmod 0600 /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chmod 0600 /dev/ttyO1
-    chown bluetooth bluetooth /dev/ttyO1
 
 # change permissions for S3D hardware
     chown system system /sys/devices/platform/omapdss/display0/s3d_enable

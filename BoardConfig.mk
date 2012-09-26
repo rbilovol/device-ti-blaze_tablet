@@ -30,6 +30,9 @@ BLTSVILLE_ENHANCEMENT :=true
 # Use the non-open-source parts, if they're present
 #-include vendor/ti/blaze/BoardConfigVendor.mk
 
+# TI's Bluetooth stack based on BlueZ
+BLUETI_ENHANCEMENT := true
+
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
@@ -81,6 +84,10 @@ WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wl12xx_sdio.ko"
 WIFI_DRIVER_MODULE_NAME          := "wl12xx_sdio"
 WIFI_FIRMWARE_LOADER             := ""
 COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
+endif
+
+ifdef BLUETI_ENHANCEMENT
+COMMON_GLOBAL_CFLAGS += -DBLUETI_ENHANCEMENT
 endif
 
 #Set 32 byte cache line to true
