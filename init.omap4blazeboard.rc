@@ -1,14 +1,25 @@
 import init.omap4blazeboard.usb.rc
 
-on early-init
-	export EXTERNAL_STORAGE /storage/sdcard0
+on init
+# See storage config details at http://source.android.com/tech/storage/
+	mkdir /mnt/shell/emulated 0700 shell shell
+	mkdir /storage/emulated 0555 root root
+
+	export EXTERNAL_STORAGE /storage/emulated/legacy
+	export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+	export EMULATED_STORAGE_TARGET /storage/emulated
+
+# Support legacy paths
+	symlink /storage/emulated/legacy /sdcard
+	symlink /storage/emulated/legacy /mnt/sdcard
+	symlink /storage/emulated/legacy /storage/sdcard0
+	symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+
+
+# create real external storage
 	export SECONDARY_STORAGE /storage/sdcard1
-	mkdir /storage 0050 system sdcard_r
-	mkdir /storage/sdcard0 0000 system system
 	mkdir /storage/sdcard1 0000 system system
-	# for backwards compatibility
-	symlink /storage/sdcard0 /sdcard
-	symlink /storage/sdcard0 /mnt/sdcard
+
 
 # create removable USB Mass Storage mountpoints
     mkdir /storage/usb0 0000 system system
@@ -221,7 +232,7 @@ service bugreport /system/bin/bugmailer.sh -v
 # create virtual SD card at /storage/sdcard0, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
 # underlying files in /data/media will be created with user and group media_rw (1023)
-service sdcard /system/bin/sdcard /data/media 1023 1023
+service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
 	class main
 
 service p2p_supplicant /system/bin/wpa_supplicant \
