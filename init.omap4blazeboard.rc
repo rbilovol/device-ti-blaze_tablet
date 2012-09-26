@@ -273,3 +273,15 @@ service navl_server /system/bin/navd --android_log NAVD  -p3 -nav\"-c/system/etc
 	class main
 	disabled
 	oneshot
+
+# Texas Instruments Shared Memory Service
+service shm_service /system/bin/shm_service --no-fork
+	class core
+	user system
+	group system
+
+# Texas Instruments Augmented Reality X-celerator Daemon
+service tiared /system/bin/arxd
+	class main
+	user media
+	group media
