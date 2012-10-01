@@ -37,3 +37,7 @@
 
 #for GCX
 /dev/gcioctl              0666   system     system
+
+# for DVP
+/dev/dvp_kgm_dsp          0666   system     system
+/dev/dvp_kgm_simcop       0666   system     system
