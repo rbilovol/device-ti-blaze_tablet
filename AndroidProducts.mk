@@ -29,7 +29,7 @@
 include device/ti/blaze_tablet/Config.mk
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_blaze_tablet.mk
+    blaze_tablet:$(LOCAL_DIR)/full_blaze_tablet.mk
 
 ifdef OMAP_ENHANCEMENT_CPCAM
 PRODUCT_MAKEFILES += \
