@@ -26,6 +26,8 @@ OMAP_ENHANCEMENT_MULTIGPU := true
 
 ENHANCED_DOMX := true
 BLTSVILLE_ENHANCEMENT :=true
+BOARD_USES_DVP := true
+BOARD_USES_ARX := true
 #USE_ITTIAM_AAC := true
 # Use the non-open-source parts, if they're present
 #-include vendor/ti/blaze/BoardConfigVendor.mk
