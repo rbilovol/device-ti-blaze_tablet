@@ -298,7 +298,8 @@ service shm_service /system/bin/shm_service --no-fork
 	group system
 
 # Texas Instruments Augmented Reality X-celerator Daemon
-service tiared /system/bin/arxd
+service arxd /system/bin/arxd
 	class main
-	user media
-	group media
+	user system
+	group drmrpc
+	ioprio rt 4
