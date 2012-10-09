@@ -76,7 +76,7 @@ int BMP085Sensor::enable(int32_t handle, int en) {
                 flags = flags ? 2 : 0;
         }
         char buffer[2];
-        sprintf(buffer, "%d\n", flags);
+        snprintf(buffer, 2, "%d", flags);
         write(fd, buffer, sizeof(buffer));
         close(fd);
         mEnabled = flags;

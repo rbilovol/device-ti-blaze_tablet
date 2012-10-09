@@ -77,7 +77,7 @@ int TSL2771Sensor::enable(int32_t handle, int en)
         als_fd = open(input_sysfs_path, O_RDWR);
         if (als_fd >= 0) {
             char buffer[2];
-            sprintf(buffer, "%d\n", flags);
+            snprintf(buffer, 2, "%d", flags);
             write(als_fd, buffer, sizeof(buffer));
             close(als_fd);
             mEnabled = flags << light;
@@ -89,7 +89,7 @@ int TSL2771Sensor::enable(int32_t handle, int en)
         prox_fd = open(input_sysfs_path, O_RDWR);
         if (prox_fd >= 0) {
             char buffer[2];
-            sprintf(buffer, "%d\n", flags);
+            snprintf(buffer, 2, "%d", flags);
             write(prox_fd, buffer, sizeof(buffer));
             close(prox_fd);
             mEnabled = flags << proximity;
