@@ -262,6 +262,11 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
 	disabled
 	oneshot
 
+service dhcpcd_eth1 /system/bin/dhcpcd -ABKL
+	class main
+	disabled
+	oneshot
+
 service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
 	class main
 	disabled
