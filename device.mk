@@ -70,6 +70,7 @@ PRODUCT_COPY_FILES += \
 	device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	device/ti/blaze_tablet/bootanimation.zip:/system/media/bootanimation.zip \
 	device/ti/blaze_tablet/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+	device/ti/blaze_tablet/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
 	device/ti/blaze_tablet/twl6030_pwrbutton.kl:system/usr/keylayout/twl6030_pwrbutton.kl \
 	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
