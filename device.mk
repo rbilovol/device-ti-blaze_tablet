@@ -143,6 +143,7 @@ PRODUCT_PACKAGES += \
 	dhcpcd.conf \
 	hostapd.conf \
 	wifical.sh \
+	wilink7.sh \
 	TQS_D_1.7.ini \
 	TQS_D_1.7_127x.ini \
 	crda \
