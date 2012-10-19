@@ -286,11 +286,6 @@ service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
 on property:init.svc.smc_pa=stopped
 	start tf_daemon
 
-service navl_server /system/bin/navd --android_log NAVD  -p3 -nav\"-c/system/etc/gps/config/pathconfigfile.txt\"
-	class main
-	disabled
-	oneshot
-
 # Texas Instruments Shared Memory Service
 service shm_service /system/bin/shm_service --no-fork
 	class core
