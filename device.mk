@@ -44,7 +44,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 PRODUCT_PACKAGES += \
-    CameraOMAP4 \
+    CameraOMAP \
     Camera \
     camera_test
 
