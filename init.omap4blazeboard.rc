@@ -283,13 +283,32 @@ service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
 	disabled
 	oneshot
 
-on property:init.svc.smc_pa=stopped
-	start tf_daemon
-
-service navl_server /system/bin/navd --android_log NAVD  -p3 -nav\"-c/system/etc/gps/config/pathconfigfile.txt\"
+service devproxy /system/bin/devproxy
 	class main
 	disabled
 	oneshot
+
+service agnss_connect /system/bin/agnss_connect -p
+	class main
+	disabled
+	oneshot
+
+service RXN_IntApp /system/bin/RXN_IntApp /system/etc/gnss/RXN/MSLConfig.txt
+	class main
+	disabled
+	oneshot
+
+service cplc_main /system/bin/cplc_main XML
+	class main
+	disabled
+	oneshot
+
+service supl20clientd /system/bin/supl20clientd
+	class main
+	oneshot
+
+on property:init.svc.smc_pa=stopped
+	start tf_daemon
 
 # Texas Instruments Shared Memory Service
 service shm_service /system/bin/shm_service --no-fork
