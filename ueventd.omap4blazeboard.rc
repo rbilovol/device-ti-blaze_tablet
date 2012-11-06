@@ -41,3 +41,6 @@
 # for DVP
 /dev/dvp_kgm_dsp          0666   system     system
 /dev/dvp_kgm_simcop       0666   system     system
+
+#NFC
+/dev/nfc                  0666   system    system
