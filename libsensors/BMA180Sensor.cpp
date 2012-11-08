@@ -61,9 +61,9 @@ int AccelSensor::setInitialState() {
     if (!ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ACCEL_X), &absinfo_x) &&
         !ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ACCEL_Y), &absinfo_y) &&
         !ioctl(data_fd, EVIOCGABS(EVENT_TYPE_ACCEL_Z), &absinfo_z)) {
-        value = absinfo_y.value;
-        mPendingEvent.data[0] = value * CONVERT_A_X;
         value = absinfo_x.value;
+        mPendingEvent.data[0] = value * CONVERT_A_X;
+        value = absinfo_y.value;
         mPendingEvent.data[1] = value * CONVERT_A_Y;
         value = absinfo_z.value;
         mPendingEvent.data[2] = value * CONVERT_A_Z;
