@@ -158,9 +158,11 @@ PRODUCT_PACKAGES += \
 	make_ext4fs \
 	setup_fs
 
+ifdef OMAP_ENHANCEMENT
 # Audio HAL module
 PRODUCT_PACKAGES += audio.primary.omap4
 PRODUCT_PACKAGES += audio.hdmi.omap4
+endif
 
 # Dolby DD+ Decoder
 ifdef OMAP_ENHANCEMENT
