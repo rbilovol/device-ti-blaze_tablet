@@ -34,15 +34,6 @@ PRODUCT_PACKAGES := \
 #    SkLibTiJpeg_Test
 
 # Camera
-ifdef OMAP_ENHANCEMENT_CPCAM
-PRODUCT_PACKAGES += \
-    libcpcam_jni \
-    com.ti.omap.android.cpcam
-
-PRODUCT_COPY_FILES += \
-    hardware/ti/omap4xxx/cpcam/com.ti.omap.android.cpcam.xml:system/etc/permissions/com.ti.omap.android.cpcam.xml
-endif
-
 PRODUCT_PACKAGES += \
     CameraOMAP \
     Camera \
@@ -223,5 +214,10 @@ $(call inherit-product-if-exists, device/ti/proprietary-open/wl12xx/wlan/wl12xx-
 $(call inherit-product-if-exists, device/ti/common-open/s3d/s3d-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ducati-blaze_tablet.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/dsp_fw.mk)
+
+ifdef OMAP_ENHANCEMENT_CPCAM
+$(call inherit-product-if-exists, device/ti/common-open/cpcam/cpcam-products.mk)
+endif
+
 # clear OMAP_ENHANCEMENT variables
 $(call ti-clear-vars)
