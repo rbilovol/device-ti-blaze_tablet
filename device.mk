@@ -39,8 +39,8 @@ PRODUCT_PACKAGES += \
     libcpcam_jni \
     com.ti.omap.android.cpcam
 
-#PRODUCT_COPY_FILES += \
-#    hardware/ti/omap4xxx/cpcam/com.ti.omap.android.cpcam.xml:system/etc/permissions/com.ti.omap.android.cpcam.xml
+PRODUCT_COPY_FILES += \
+    hardware/ti/omap4xxx/cpcam/com.ti.omap.android.cpcam.xml:system/etc/permissions/com.ti.omap.android.cpcam.xml
 endif
 
 PRODUCT_PACKAGES += \
