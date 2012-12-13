@@ -49,14 +49,7 @@ on post-fs-data
 
 	setprop vold.post_fs_data_done 1
 
-#insert bluetooth modules
-	insmod /system/lib/modules/compat.ko
-	insmod /system/lib/modules/bluetooth.ko force_acl_master=1 enable_le=1
-#	insmod /system/lib/modules/bluetooth.ko
-	insmod /system/lib/modules/rfcomm.ko
-	insmod /system/lib/modules/hidp.ko
-	insmod /system/lib/modules/bnep.ko
-	insmod /system/lib/modules/btwilink.ko
+#for Bluetooth HID
 	chmod 0666 /dev/uhid
 
 # change permissions for Bluetooth/FM/GPS
