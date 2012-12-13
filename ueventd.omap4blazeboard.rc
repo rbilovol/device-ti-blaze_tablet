@@ -44,3 +44,6 @@
 
 #NFC
 /dev/nfc                  0666   system    system
+
+# for Bluetooth
+/dev/hci_tty              0666   bluetooth bluetooth
