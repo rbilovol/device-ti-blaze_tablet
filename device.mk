@@ -77,8 +77,6 @@ PRODUCT_COPY_FILES += \
 	device/ti/common-open/audio/audio_policy.conf:system/etc/audio_policy.conf \
 	device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/blaze_tablet/media_codecs.xml:system/etc/media_codecs.xml \
-	device/ti/blaze_tablet/cyttsp4-i2c.idc:system/usr/idc/cyttsp4-i2c.idc \
-	device/ti/blaze_tablet/wallpaper_info.xml:data/system/wallpaper_info.xml \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 #	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 #	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
