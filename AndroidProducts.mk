@@ -31,10 +31,5 @@ include device/ti/blaze_tablet/Config.mk
 PRODUCT_MAKEFILES := \
     blaze_tablet:$(LOCAL_DIR)/full_blaze_tablet.mk
 
-ifdef OMAP_ENHANCEMENT_CPCAM
-PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/sdk_addon/ti_omap_addon.mk
-endif
-
 # clear OMAP_ENHANCEMENT variables
 $(call ti-clear-vars)
