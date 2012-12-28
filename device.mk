@@ -119,7 +119,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=160
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.hwc.mirroring.region=0:0:1280:720
+	persist.hwc.mirroring.region=0:0:1280:800
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
