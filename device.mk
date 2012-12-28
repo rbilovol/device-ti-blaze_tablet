@@ -59,11 +59,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	sensors.blaze_tablet
 
-#PRODUCT_PACKAGES += \
-#       boardidentity \
-#       libboardidentity \
-#       libboard_idJNI
-#       Board_id
+PRODUCT_PACKAGES += \
+	boardidentity \
+	libboardidentity \
+	libboard_idJNI \
+	Board_id
 
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
