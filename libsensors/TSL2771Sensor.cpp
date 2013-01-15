@@ -24,8 +24,6 @@
 
 #include "TSL2771Sensor.h"
 
-#define DEBUG_TSL2771 0
-
 /*****************************************************************************/
 
 TSL2771Sensor::TSL2771Sensor(const char *name)
@@ -131,18 +129,12 @@ int TSL2771Sensor::readEvents(sensors_event_t* data, int count)
                 mPendingEvents[light].light = event->value;
                 mPendingMask |= 1 << light;
                 mInputReader.next();
-#ifdef DEBUG_TSL2771
-                ALOGD("TSL2771Sensor: Received LUX value=%d", event->value);
-#endif
             }
         } else if (type == EV_ABS) {
             if (event->code == EVENT_TYPE_PROXIMITY) {
                 mPendingEvents[proximity].distance = indexToValue(event->value);
                 mPendingMask |= 1 << proximity;
                 mInputReader.next();
-#ifdef DEBUG_TSL2771
-                ALOGD("TSL2771Sensor: Received Proximity value=%d", event->value);
-#endif
             }
         } else if (type == EV_SYN) {
            int64_t time = timevalToNano(event->time);
