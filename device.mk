@@ -48,9 +48,6 @@ else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-#to flow down to ti-wpan-products.mk
-BLUETI_ENHANCEMENT := true
-
 #Need to revisit the fastboot copy files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel \

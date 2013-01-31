@@ -32,9 +32,6 @@ BOARD_USES_ARX := true
 # Use the non-open-source parts, if they're present
 #-include vendor/ti/blaze/BoardConfigVendor.mk
 
-# TI's Bluetooth stack based on BlueZ
-BLUETI_ENHANCEMENT := true
-
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
@@ -94,9 +91,6 @@ WIFI_FIRMWARE_LOADER             := ""
 COMMON_GLOBAL_CFLAGS += -DUSES_TI_MAC80211
 endif
 
-ifdef BLUETI_ENHANCEMENT
-COMMON_GLOBAL_CFLAGS += -DBLUETI_ENHANCEMENT
-endif
 ifdef NFC_TI_DEVICE
 COMMON_GLOBAL_CFLAGS += -DNFC_JNI_TI_DEVICE
 endif

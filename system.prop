@@ -5,7 +5,6 @@
 # rild.libargs=-d /dev/ttyS0
 com.ti.omap_enhancement=true
 com.ti.omap_enhancement_s3d=true
-com.ti.blueti_enhancement=true
 com.ti.nfcti_enhancement=true
 dalvik.vm.heapstartsize=5m
 dalvik.vm.heapgrowthlimit=48m
