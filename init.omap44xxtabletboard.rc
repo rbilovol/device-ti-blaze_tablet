@@ -1,4 +1,4 @@
-import init.omap4blazeboard.usb.rc
+import init.omap44xxtabletboard.usb.rc
 
 on init
 # See storage config details at http://source.android.com/tech/storage/

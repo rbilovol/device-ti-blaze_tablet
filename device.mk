@@ -51,9 +51,9 @@ endif
 #Need to revisit the fastboot copy files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel \
-	device/ti/blaze_tablet/init.omap4blazeboard.rc:root/init.omap4blazeboard.rc \
-	device/ti/blaze_tablet/init.omap4blazeboard.usb.rc:root/init.omap4blazeboard.usb.rc \
-	device/ti/blaze_tablet/ueventd.omap4blazeboard.rc:root/ueventd.omap4blazeboard.rc \
+	device/ti/blaze_tablet/init.omap44xxtabletboard.rc:root/init.omap44xxtabletboard.rc \
+	device/ti/blaze_tablet/init.omap44xxtabletboard.usb.rc:root/init.omap44xxtabletboard.usb.rc \
+	device/ti/blaze_tablet/ueventd.omap44xxtabletboard.rc:root/ueventd.omap44xxtabletboard.rc \
 	device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
 	device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	device/ti/blaze_tablet/bootanimation.zip:/system/media/bootanimation.zip \
