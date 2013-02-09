@@ -37,9 +37,9 @@ endif
 #Need to revisit the fastboot copy files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel \
-	device/ti/blaze_tablet/init.omap44xxtabletboard.rc:root/init.omap44xxtabletboard.rc \
-	device/ti/blaze_tablet/init.omap44xxtabletboard.usb.rc:root/init.omap44xxtabletboard.usb.rc \
-	device/ti/blaze_tablet/ueventd.omap44xxtabletboard.rc:root/ueventd.omap44xxtabletboard.rc \
+	device/ti/blaze_tablet/init.tiomap4blazetablet.rc:root/init.tiomap4blazetablet.rc \
+	device/ti/blaze_tablet/init.tiomap4blazetablet.usb.rc:root/init.tiomap4blazetablet.usb.rc \
+	device/ti/blaze_tablet/ueventd.tiomap4blazetablet.rc:root/ueventd.tiomap4blazetablet.rc \
 	device/ti/blaze_tablet/fstab.blaze_tablet:root/fstab.blaze_tablet \
 	device/ti/blaze_tablet/qtouch-touchscreen.idc:system/usr/idc/qtouch-touchscreen.idc \
 	device/ti/blaze_tablet/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
