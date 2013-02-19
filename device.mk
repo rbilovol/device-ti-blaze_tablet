@@ -76,14 +76,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-        LiveWallpapers \
-        LiveWallpapersPicker \
-        MagicSmokeWallpapers \
-        VisualizationWallpapers \
-        librs_jni
-
 PRODUCT_PROPERTY_OVERRIDES := \
 	hwui.render_dirty_regions=false
 
