@@ -20,9 +20,6 @@ include device/ti/blaze_tablet/Config.mk
 
 DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
 
-PRODUCT_PACKAGES := \
-    ti_omap4_ducati_bins
-
 # Camera
 PRODUCT_PACKAGES += \
     CameraOMAP \
