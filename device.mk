@@ -17,7 +17,6 @@
 # define OMAP_ENHANCEMENT variables
 include device/ti/blaze_tablet/Config.mk
 
-
 DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
 
 # Camera
@@ -62,10 +61,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	lights.blaze_tablet
 
-#Remove this as it freezes at boot. Will re-enable once fixed
 PRODUCT_PACKAGES += \
-	sensors.blaze_tablet \
-	sensor.test
+	sensors.blaze_tablet
 
 #PRODUCT_PACKAGES += \
 #       boardidentity \
@@ -96,12 +93,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PACKAGES += \
-	librs_jni \
 	com.android.future.usb.accessory
 
 # WI-Fi
 PRODUCT_PACKAGES += \
-	dhcpcd.conf \
 	hostapd.conf \
 	wifical.sh \
 	wilink7.sh \
@@ -116,7 +111,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-	make_ext4fs \
 	e2fsck \
 	setup_fs
 
@@ -172,11 +166,6 @@ PRODUCT_COPY_FILES += \
 
 # BlueZ a2dp Audio HAL module
 PRODUCT_PACKAGES += audio.a2dp.default
-
-# BlueZ test tools
-PRODUCT_PACKAGES += \
-	hciconfig \
-	hcitool
 
 # SMC components for secure services like crypto, secure storage
 PRODUCT_PACKAGES += \
