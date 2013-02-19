@@ -22,16 +22,6 @@ DEVICE_PACKAGE_OVERLAYS := device/ti/blaze_tablet/overlay
 
 PRODUCT_PACKAGES := \
     ti_omap4_ducati_bins
-#    libOMX_Core \
-#    libOMX.TI.DUCATI1.VIDEO.DECODER
-
-# Tiler
-#PRODUCT_PACKAGES += \
-#    libtimemmgr
-
-#Lib Skia test
-#PRODUCT_PACKAGES += \
-#    SkLibTiJpeg_Test
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -67,8 +57,6 @@ PRODUCT_COPY_FILES += \
 	device/ti/blaze_tablet/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/blaze_tablet/media_codecs.xml:system/etc/media_codecs.xml \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
-#	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-#	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 
 # to mount the external storage (sdcard)
 PRODUCT_COPY_FILES += \
@@ -98,9 +86,6 @@ PRODUCT_PACKAGES += \
         MagicSmokeWallpapers \
         VisualizationWallpapers \
         librs_jni
-
-#PRODUCT_PACKAGES += \
-#	VideoEditorGoogle
 
 PRODUCT_PROPERTY_OVERRIDES := \
 	hwui.render_dirty_regions=false
@@ -194,11 +179,7 @@ PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
         frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfcextras.xml \
         frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-        device/ti/omap5sevm/nfcee_access.xml:system/etc/nfcee_access.xml \
-#   packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
-#	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-#	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-#	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+        device/ti/omap5sevm/nfcee_access.xml:system/etc/nfcee_access.xml
 
 # BlueZ a2dp Audio HAL module
 PRODUCT_PACKAGES += audio.a2dp.default
@@ -227,7 +208,6 @@ PRODUCT_PACKAGES += \
 
 $(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
-#$(call inherit-product-if-exists, vendor/ti/blaze/device-vendor.mk)
 $(call inherit-product-if-exists, hardware/ti/wpan/ti-wpan-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ti-omap4-vendor.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/wl12xx/wlan/wl12xx-wlan-fw-products.mk)
