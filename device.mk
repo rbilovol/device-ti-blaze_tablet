@@ -87,9 +87,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory
-
 # WI-Fi
 PRODUCT_PACKAGES += \
 	hostapd.conf \
