@@ -112,6 +112,9 @@ PRODUCT_PACKAGES += audio.primary.omap4
 PRODUCT_PACKAGES += audio.hdmi.omap4
 endif
 
+# Bluetooth a2dp Audio HAL module
+PRODUCT_PACKAGES += audio.a2dp.default
+
 # Dolby DD+ Decoder
 ifdef OMAP_ENHANCEMENT
 PRODUCT_PACKAGES += \
@@ -160,9 +163,6 @@ PRODUCT_COPY_FILES += \
 	device/ti/blaze_tablet/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
 	device/ti/blaze_tablet/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
 	device/ti/omap5sevm/nfcee_access.xml:system/etc/nfcee_access.xml
-
-# BlueZ a2dp Audio HAL module
-PRODUCT_PACKAGES += audio.a2dp.default
 
 # SMC components for secure services like crypto, secure storage
 PRODUCT_PACKAGES += \
