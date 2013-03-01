@@ -62,7 +62,6 @@ on boot
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
 	chmod 0666 /dev/pvrsrvkm
 	chmod 0444 /system/usr/keychars/omap4-keypad.kcm.bin
-	setprop ro.crypto.keyfile.userdata /dev/block/platform/omap/omap_hsmmc.1/by-name/crypto
 
 # change permissions for mtd device
 	chmod 0660 /dev/mtd/mtd0
@@ -115,11 +114,7 @@ on boot
 on fs
 	mkdir /factory 0775 radio radio
 	symlink /dev/block/platform /dev/block/platform/omap
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/system /system wait ro
-	setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/userdata /data wait noatime nosuid nodev nomblk_io_submit
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/cache /cache wait noatime nosuid nodev nomblk_io_submit
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/efs /factory wait ro
+	mount_all /fstab.blaze_tablet
 	setprop ro.crypto.fuse_sdcard true
 
 # H264 Encoder Profile setting
